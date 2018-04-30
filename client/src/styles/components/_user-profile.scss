@@ -1,0 +1,13 @@
+.user-profile {
+    margin-top: 20px;
+}
+
+.user-profile__filter {
+    display: inline-block;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.active-filter {
+    border-bottom: 2px solid yellow;
+}

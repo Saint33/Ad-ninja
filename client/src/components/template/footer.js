@@ -2,7 +2,7 @@ import React from 'react';
 import { Row } from 'reactstrap';
 
 const Footer = () => (
-    <Row> 
+    <Row className="footer"> 
         Footer
     </Row>
 )

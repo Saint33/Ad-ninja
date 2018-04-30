@@ -7,13 +7,27 @@ const AdSchema = mongoose.Schema({
     },   
     price: {
         type: String,
-        default: 'n/a'   
+        default: 'n/a',
+        trim: true   
     },
     description: {
         type: String
     },
     category: {
         type: String
+    },
+    image: {
+        type: String
+    },
+    address: {
+        type: String
+    },
+    ownerId: {
+        type: String
+    },
+    active: {
+        type: Boolean,
+        default: true
     }
 }, {timestamps: true});
 

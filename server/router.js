@@ -20,7 +20,7 @@ module.exports = function(app){
     // Registration route
     authRoutes.post('/register', AuthenticationController.register);
     // Authentication route
-    authRoutes.get('/auth', auth, AuthenticationController.auth);
+    authRoutes.get('/', auth, AuthenticationController.auth);
     // Login route
     authRoutes.post('/login', AuthenticationController.login);
     // Logout route
@@ -49,6 +49,8 @@ module.exports = function(app){
     adRoutes.get('/', AdController.getAd);
     adRoutes.get('/ads', AdController.getAds);
     adRoutes.delete('/', AdController.deleteAd);
+    adRoutes.get('/user-ads', AdController.getUserAds);
+    adRoutes.get('/find', AdController.findAd);
 
     app.use('/api', apiRoutes);
 

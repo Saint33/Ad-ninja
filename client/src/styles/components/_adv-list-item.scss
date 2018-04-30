@@ -1,0 +1,29 @@
+.adv-list-item {
+    width: 208px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.adv-list-item__image {
+    width: 100%;
+    padding: 4px;
+}
+
+.adv-list-item__description_title {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.adv-list-item__description_price {
+    display: block;
+    margin: 0 5px;
+}
+
+.adv-list-item__description_date {
+    display: block;
+    color: #9C8700;
+    font-size: 14px;
+    margin: 0 5px;
+}

@@ -20,6 +20,17 @@ exports.getAd = (req, res, next) => {
     });
 };
 
+exports.getUserAds = (req, res, next) => {
+    let userId = req.query.id;
+    Ad.find({"ownerId": userId}, (err, docs) => {
+        if(err) return res.status(400).send(err);
+        res.json({
+            success: true,
+            docs
+        });
+    });
+}
+
 exports.getAds = (req, res, next) => {
     let skip = parseInt(req.query.skip);
     let limit = parseInt(req.query.limit);
@@ -48,3 +59,13 @@ exports.updateAd = (req, res, next) => {
         });
     });
 }
+
+exports.findAd = (req, res, next) => {
+    let query = req.query.query;
+    let limit = req.query.limit;
+    let skip = req.query.skip;
+    Ad.find({$text:{ $search:`"\"${query}\""`}}).skip(skip).limit(limit).exec((err, doc) => {
+        if(err) return res.status(400).send(err);
+        res.send(doc);
+    });
+};

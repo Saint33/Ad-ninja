@@ -1,0 +1,20 @@
+import axios from 'axios';
+
+export const loginUser = ({email, password}) => {
+    const request = axios.post('/api/auth/login', {email, password})
+        .then(response => response.data)
+    return{
+        type: 'USER_LOGIN',
+        payload: request
+    }
+}
+
+export const auth = () => {
+    const request = axios.get('/api/auth')
+        .then(response => response.data)
+
+    return {
+        type: 'USER_AUTH',
+        payload: request
+    }
+}

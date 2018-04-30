@@ -1,0 +1,96 @@
+
+.adv-item {
+    margin: 20px;
+    padding: 10px;
+    min-width: 800px;
+}
+
+.adv-item__header {
+
+}
+
+.adv-item__description {
+
+}
+
+.adv-item__title {
+    display: block;
+}
+
+.adv-item__number {
+    display: block;
+}
+
+.adv-item__price {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.adv-item__image {
+    width: 100%;
+}
+
+.adv-item__sideinfo {
+    border-left: 1px solid #9C9300;
+}
+
+.adv-item__selers-info_phone {
+    padding: 8px;
+    background: #FFFDD7;
+    border: 1px solid #9C9300;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.adv-item__selers-info_name{
+    display: block;
+    font-size: 18px;
+}
+
+.adv-item__selers-info_reg {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.adv-item__selers-info_ads {
+    display: block;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    font-style: italic;
+}
+.adv-item__selers-info_adress {
+    margin: 20px 0;
+}
+
+.adv-item__selers-info_adress-title {
+    display: block;
+    font-size: 15px;
+    color: #ccc;
+}
+
+.adv-item__selers-info_adress-value {
+
+}
+
+.adv-item__info-address_title {
+    color: #ccc;
+    margin-right: 15px;
+}
+
+.adv-item__info-address {
+    border-top: 1px solid #ccc;
+    border-bottom:  1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+
+.adv-item__info-description {
+    padding: 10px;
+    margin: 10px;
+}

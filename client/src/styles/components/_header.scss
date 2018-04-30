@@ -1,0 +1,79 @@
+.header {
+    background-color: #FFDD00;
+    height: 60px;
+    padding-top: 14px;
+    border-radius: 8px;
+}
+
+.header__title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Trade Winds', cursive;
+    color: black;
+}
+
+.header__title:hover {
+    text-decoration: none;
+    color: #9C9300;
+}
+
+.header__link {
+    margin-right: 15px;
+    font-size: 18px;
+    color: black;
+}
+
+.header__link:hover{
+    text-decoration: none;
+    color: #9C9300;
+}
+
+.header__button {
+    background-color: black;
+    color: white;
+    border-color: black;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.header__button:hover {
+    background-color: #4A4A4A;
+    border-color: #4A4A4A;
+    text-decoration: none;
+    color:white;
+}
+
+.header__button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.header-login {
+    justify-content: flex-end;
+}
+
+.header-login__user {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-right: 15px;
+}
+
+.header-login__user:hover {
+    color: red;
+    text-decoration: none;
+}
+
+.header-search {
+    justify-content: center;
+}
+
+.header-search__input {
+    width: 50% !important;
+}
+
