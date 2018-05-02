@@ -12,6 +12,11 @@ export default (state = initialState, action) => {
                 ...state, 
                 login: action.payload
             }
+        case 'USER_LOGOUT_FULFILLED':
+            return {
+                ...state, 
+                login: action.payload
+            }
         default: 
             return state;
     }

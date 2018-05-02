@@ -1,5 +1,5 @@
 .header {
-    background-color: #FFDD00;
+    background-color: $main-color;
     height: 60px;
     padding-top: 14px;
     border-radius: 8px;
@@ -9,7 +9,7 @@
     font-size: 24px;
     font-weight: bold;
     font-family: 'Trade Winds', cursive;
-    color: black;
+    color: $secondary-color;
 }
 
 .header__title:hover {
@@ -20,7 +20,8 @@
 .header__link {
     margin-right: 15px;
     font-size: 18px;
-    color: black;
+    color: $secondary-color;
+
 }
 
 .header__link:hover{
@@ -33,7 +34,7 @@
     color: white;
     border-color: black;
     border-radius: 5px;
-    padding: 5px;
+    padding: 5px 5px 30px 5px;
     cursor: pointer;
     transition-duration: 0.2s;
     height: 30px;
@@ -50,7 +51,6 @@
 .header__button-wrapper {
     display: flex;
     justify-content: flex-end;
-
 }
 
 .header-login {
@@ -76,4 +76,3 @@
 .header-search__input {
     width: 50% !important;
 }
-

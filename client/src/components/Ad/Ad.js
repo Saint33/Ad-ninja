@@ -3,6 +3,8 @@ import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Loader from 'react-loaders'
+import FaPhone from 'react-icons/lib/fa/phone';
+import { formatDate, memberSince } from '../../utility';
 import moment from 'moment';
 
 class Ad extends Component {
@@ -10,10 +12,6 @@ class Ad extends Component {
         currentAd: {},
         currentAdOwner: {},
         loading: true
-     }
-
-    memberSince(date){
-        return moment(date).format("MMMM YYYY")
     }
 
     componentWillMount(){
@@ -43,7 +41,7 @@ class Ad extends Component {
             <Col xs={{ size: 7, offset: 1 }}>
                 <div>
                     <h3 className="adv-item__title">{ad.title}</h3>
-                    <span className="adv-item__number">№ 991446249, размещено сегодня в 10:32</span>
+                    <span className="adv-item__number">№ 991446249, размещено {formatDate(ad.createdAt)}</span>
                 </div>
                 <img 
                     src={`/api/file/${ad.image}`}
@@ -64,23 +62,17 @@ class Ad extends Component {
                 <span className="adv-item__price">{ad.price} ₽</span>
                 <div className="adv-item__selers-info">
                     <div className="adv-item__selers-info_phone">
-                        Телефон
-                        {adOwner.phone}
+                        <FaPhone size={20} className="phone-icon"/>
+                        <span >{adOwner.phone}</span>
                     </div>
-                        <Link to="" className="adv-item__selers-info_name">{adOwner.lastname}</Link>
-                        <span className="adv-item__selers-info_reg">На Add-ninja c {this.memberSince(adOwner.createdAt)}</span>
-                        
-                    <Link to="" className="adv-item__selers-info_ads">
-                        4 объявления пользователя
-                    </Link>
+                        <Link to={`/user/${adOwner._id}`} className="adv-item__selers-info_name">{adOwner.firstname}</Link>
+                        <span className="adv-item__selers-info_reg">На Add-ninja c {memberSince(adOwner.createdAt)}</span>
                     <div className="adv-item__selers-info_adress">
                         <span className="adv-item__selers-info_adress-title">Адрес:</span>
                         <span className="adv-item__selers-info_adress-value">{adOwner.address}</span>
 
                     </div>
                 </div>
-
-                
             </Col>
             </Row>
             }

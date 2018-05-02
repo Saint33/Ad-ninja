@@ -54,7 +54,7 @@ class Header extends Component {
                     </Modal>
                 </Row>
                 <Row className="header">
-                    <Col md="3" lg="4">
+                    <Col xs="3" md="3" lg="4">
                         <Link to="/" className="header__title">Ad Ninja</Link>
                     </Col>
                     <Col>

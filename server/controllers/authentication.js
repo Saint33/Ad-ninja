@@ -17,7 +17,9 @@ exports.auth = (req, res, next) => {
         isAuth: true,
         id: req.user._id,
         email: req.user.email,
-        username: req.user.username
+        username: req.user.username,
+        phone: req.user.phone,
+        firstname: req.user.firstname
     })
 };
 
@@ -48,6 +50,8 @@ exports.login = (req, res, next) => {
 exports.logout = (req, res, next) => {
     req.user.deleteToken(req.token, (err, user) => {
         if(err) return res.status(400).send(err);
-        res.sendStatus(200);
+        res.status(200).json({
+            isAuth: false
+        });
     });
 };

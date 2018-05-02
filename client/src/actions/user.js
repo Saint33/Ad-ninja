@@ -18,3 +18,13 @@ export const auth = () => {
         payload: request
     }
 }
+
+export const logout = () => {
+    const request = axios.get('/api/auth/logout')
+        .then(response => response.data)
+
+    return {
+        type: 'USER_LOGOUT',
+        payload: request
+    }
+}

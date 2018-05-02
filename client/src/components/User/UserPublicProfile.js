@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import axios from 'axios';
-import UserProfileAd from '../Ad/AdUserProfile';
-import { logout } from '../../actions/user';
-import { withRouter } from 'react-router-dom';
+import AdListItem from '../Ad/AdListItem';
+import { memberSince } from '../../utility';
 
-class UserProfile extends Component {
+class UserPublicProfile extends Component {
     state = { 
         user: {},
         userAdsActive: [],
         userAdsInactive: [],
-        active: false,
+        active: true,
         inactive: false
-     }
+    }
+    handleActiveFilter = () => {
+        this.setState({active: true, inactive: false})
+    }
+    handleInactiveFilter = () =>{
+        this.setState({active: false, inactive: true})
+    }
+
     componentWillMount() {
-        axios.get(`/api/user/${this.props.user.login.id}`)
+        axios.get(`/api/user/${this.props.match.params.id}`)
             .then(response => this.setState({user: response.data}))
-        axios.get(`/api/ad/user-ads?id=${this.props.user.login.id}`)
+         axios.get(`/api/ad/user-ads?id=${this.props.user.login.id}`)
             .then(response => {
                 console.log(response)
                 let userAdsActive = [];
@@ -32,28 +38,18 @@ class UserProfile extends Component {
             })
     }
 
-    logout = () => {
-        this.props.dispatch(logout())
-        this.props.history.push('/');
-    }
-
-    handleActiveFilter = () => {
-        this.setState({active: true, inactive: false})
-    }
-    handleInactiveFilter = () =>{
-        this.setState({active: false, inactive: true})
-    }
     render() {
+        let user = this.state.user;
         return (
-            <Row className="user-profile">
-                <Col xs="3">
-                    <p className="user-profile__navigation-link">Мои объявления</p>
-                    <p className="user-profile__navigation-link">Сообщения</p>
-                    <p className="user-profile__navigation-link">Настройки</p>
-                    <p className="user-profile__navigation-link" onClick={this.logout}>Выйти</p>
-                </Col>
-                <Col>
-                    <div>
+            <Row>
+               <Col md="9">
+                <div className="public-profile">
+                    <h3 className="public-profile__name">{user.firstname}</h3>
+                    <span className="public-profile__ads">{this.state.userAdsActive.length} активных объявлений</span>
+                    <span className="public-profile__since">На Add-Ninja с {memberSince(user.createdAd)}</span>
+                    <span className="public-profile__address">{user.address}</span>
+                </div>
+                <div>
                         <p 
                             className={this.state.active? 'user-profile__filter active-filter' : 'user-profile__filter'} 
                             onClick={this.handleActiveFilter}
@@ -66,13 +62,16 @@ class UserProfile extends Component {
                         Завершенные</p>
                     </div>
                     <div>
-                        {this.state.active ?  this.state.userAdsActive.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
-                        {this.state.inactive ?  this.state.userAdsInactive.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
+                        {this.state.active ?  this.state.userAdsActive.map(ad => <AdListItem key={ad._id} {...ad} />) : null}
+                        {this.state.inactive ?  this.state.userAdsInactive.map(ad => <AdListItem key={ad._id} {...ad} />) : null}
                     </div>
-                </Col>
+               </Col>
+               <Col>
+
+               </Col>
             </Row>
         );
     }
 }
 
-export default withRouter(UserProfile);
+export default UserPublicProfile;

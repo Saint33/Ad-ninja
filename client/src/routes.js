@@ -9,6 +9,7 @@ import Ad from './components/Ad/Ad';
 import AddAd from './components/Ad/AddAd';
 import UserProfile from './components/User/UserProfile';
 import login from './components/auth/login';
+import UserPublicProfile from './components/User/UserPublicProfile';
 
 const Routes = () => (
     <Layout>
@@ -18,6 +19,7 @@ const Routes = () => (
             <Route path="/additem" component={Auth(AddAd, true)} />
             <Route path="/user/profile" component={Auth(UserProfile, true)} />
             <Route path="/login" component={Auth(login, false)} />
+            <Route path="/user/:id" component={Auth(UserPublicProfile, null)} />
         </Switch>
     </Layout>
 )

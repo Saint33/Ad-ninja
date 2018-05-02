@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 
 const Layout = (props) => {
     return (
-        <Container>
+        <Container className="main-wrapper">
             <Header />
                 {props.children}
             <Footer />

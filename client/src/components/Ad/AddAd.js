@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col, Button, Row, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
-
-export default class AddAd extends React.Component {
+class AddAd extends React.Component {
     state = {
         adInfo: {
             category: '',
@@ -50,23 +50,29 @@ export default class AddAd extends React.Component {
     }
 
   render() {
+      let user = this.props.user.login;
     return (
     <Row>
-        <h3>Подать объявление</h3>
-        <Col sm={9}>
-        <Row className="contacts">
+        
+        <Col sm={8}>
+        <h3 className="add-ad__title">Подать объявление</h3>
+        <div className="contacts">
             <h4 className="contacts__title">Контактная информация</h4>
-            <Col>
-            <span className="contacts__item">Электронная почта </span>
-            <span className="contacts__item">Ваше имя</span>
-            <span className="contacts__item">Телефон</span>
-            </Col>
-            <Col>
-            <span className="contacts__item">bnsaintz@gmail.com</span>
-            <span className="contacts__item">Уолтер Уайт</span>
-            <span className="contacts__item">851521 21321</span>
-            </Col>
-        </Row>
+            <div>
+                <div className="contacts__group">
+                    <span className="contacts__item">Электронная почта </span>
+                    <span className="contacts__value">{user.email}</span>
+                </div>
+                <div className="contacts__group">
+                    <span className="contacts__item">Ваше имя</span>
+                    <span className="contacts__value">{user.firstname}</span>
+                </div>
+                <div className="contacts__group">
+                    <span className="contacts__item">Телефон</span>
+                    <span className="contacts__value">{user.phone}</span>
+                </div>
+            </div>
+        </div>
       <Form onSubmit={this.handleFormSubmit}>
         <FormGroup row>
           <Label for="exampleSelect" sm={2}>Категория</Label>
@@ -115,10 +121,18 @@ export default class AddAd extends React.Component {
             </FormText>
           </Col>
         </FormGroup>
-        <Button color="primary" type="submit">Опубликовать</Button>
+        <button type="submit" className="header__button">Опубликовать</button>
       </Form>
       </Col>
       </Row>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(AddAd);

@@ -19,6 +19,7 @@
 
 .adv-item__number {
     display: block;
+    color: $date-color;
 }
 
 .adv-item__price {
@@ -34,7 +35,7 @@
 }
 
 .adv-item__sideinfo {
-    border-left: 1px solid #9C9300;
+    border-left: 1px solid $main-color;
 }
 
 .adv-item__selers-info_phone {
@@ -71,7 +72,7 @@
 .adv-item__selers-info_adress-title {
     display: block;
     font-size: 15px;
-    color: #ccc;
+    color: $date-color;
 }
 
 .adv-item__selers-info_adress-value {
@@ -79,7 +80,7 @@
 }
 
 .adv-item__info-address_title {
-    color: #ccc;
+    color: $date-color;
     margin-right: 15px;
 }
 
@@ -93,4 +94,8 @@
 .adv-item__info-description {
     padding: 10px;
     margin: 10px;
+}
+
+.phone-icon {
+    margin-right: 6px;
 }

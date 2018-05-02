@@ -62,9 +62,8 @@ exports.updateAd = (req, res, next) => {
 
 exports.findAd = (req, res, next) => {
     let query = req.query.query;
-    let limit = req.query.limit;
-    let skip = req.query.skip;
-    Ad.find({$text:{ $search:`"\"${query}\""`}}).skip(skip).limit(limit).exec((err, doc) => {
+
+    Ad.find({$text:{ $search:`"\"${query}\""`}}).exec((err, doc) => {
         if(err) return res.status(400).send(err);
         res.send(doc);
     });
