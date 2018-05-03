@@ -1,41 +1,27 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Loader from 'react-loaders'
 import FaPhone from 'react-icons/lib/fa/phone';
 import { formatDate, memberSince } from '../../utility';
-import moment from 'moment';
+import { connect } from 'react-redux';
+import { getAd } from '../../actions/ad';
 
 class Ad extends Component {
-    state = { 
-        currentAd: {},
-        currentAdOwner: {},
-        loading: true
-    }
 
     componentWillMount(){
-        axios.get(`/api/ad?id=${this.props.match.params.id}`)
-            .then(response => {
-                this.setState({
-                    currentAd: response.data
-                })
-                axios.get(`/api/user/${response.data.ownerId}`)
-                    .then(response => {
-                        this.setState({
-                            currentAdOwner: response.data,
-                            loading: false
-                        }) 
-                    })
-            });
+        this.props.dispatch(getAd(this.props.match.params.id))
+            
     }
+
     render() {
-        let ad = this.state.currentAd;
-        let adOwner = this.state.currentAdOwner;
+
+        let ad = this.props.ad.currentAd;
+        let loading = this.props.ad.loading;
         let loader = <Loader innerClassName="loader-position" type="ball-clip-rotate-multiple" />
         return (
             <div>
-                {this.state.loading ? loader : 
+                { !ad ? loader : 
             
             <Row className="adv-item">
             <Col xs={{ size: 7, offset: 1 }}>
@@ -63,13 +49,13 @@ class Ad extends Component {
                 <div className="adv-item__selers-info">
                     <div className="adv-item__selers-info_phone">
                         <FaPhone size={20} className="phone-icon"/>
-                        <span >{adOwner.phone}</span>
+                        <span >{ad.owner.phone}</span>
                     </div>
-                        <Link to={`/user/${adOwner._id}`} className="adv-item__selers-info_name">{adOwner.firstname}</Link>
-                        <span className="adv-item__selers-info_reg">На Add-ninja c {memberSince(adOwner.createdAt)}</span>
+                        <Link to={`/user/${ad.owner._id}`} className="adv-item__selers-info_name">{ad.owner.firstname}</Link>
+                        <span className="adv-item__selers-info_reg">На Add-ninja c {memberSince(ad.owner.createdAt)}</span>
                     <div className="adv-item__selers-info_adress">
                         <span className="adv-item__selers-info_adress-title">Адрес:</span>
-                        <span className="adv-item__selers-info_adress-value">{adOwner.address}</span>
+                        <span className="adv-item__selers-info_adress-value">{ad.owner.address}</span>
 
                     </div>
                 </div>
@@ -82,4 +68,10 @@ class Ad extends Component {
     }
 }
 
-export default Ad;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        ad: state.ad
+    }
+}
+
+export default connect(mapStateToProps)(Ad);

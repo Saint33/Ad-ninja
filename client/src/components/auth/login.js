@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions/user';
+import { login } from '../../actions/user';
 import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
@@ -31,7 +31,7 @@ class Login extends Component {
     submitForm = (e) => {
         e.preventDefault();
         let loginData = {email:this.state.email, password: this.state.password}
-        this.props.dispatch(loginUser(loginData));
+        this.props.dispatch(login(loginData));
     }
 
     render() {

@@ -105,3 +105,5 @@ http.listen(port, () => {
 });
 
 router(app);
+
+module.exports = { app };

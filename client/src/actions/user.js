@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { userAds } from './ad';
 
-export const loginUser = ({email, password}) => {
+export const login = ({email, password}) => {
     const request = axios.post('/api/auth/login', {email, password})
         .then(response => response.data)
     return{
@@ -27,4 +28,22 @@ export const logout = () => {
         type: 'USER_LOGOUT',
         payload: request
     }
+}
+
+export const getUser = (id) => {
+    const request = axios.get(`/api/user/${id}`)
+        .then(response => response.data)
+
+    return {
+        type: 'GET_USER',
+        payload: request
+    }  
+}
+
+export const getUserWithAds = (id) => {
+    return dispatch => {
+        dispatch(getUser(id))
+            .then(() => dispatch(userAds(id)))
+    }
+
 }

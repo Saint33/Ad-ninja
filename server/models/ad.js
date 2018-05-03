@@ -23,7 +23,8 @@ const AdSchema = mongoose.Schema({
         type: String
     },
     ownerId: {
-        type: String
+        type: String,
+        required: true
     },
     active: {
         type: Boolean,

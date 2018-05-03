@@ -2,34 +2,24 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import axios from 'axios';
 import UserProfileAd from '../Ad/AdUserProfile';
-import { logout } from '../../actions/user';
+import { logout, getUser } from '../../actions/user';
+import { userAds } from '../../actions/ad';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class UserProfile extends Component {
     state = { 
-        user: {},
+
         userAdsActive: [],
         userAdsInactive: [],
         active: false,
         inactive: false
      }
     componentWillMount() {
-        axios.get(`/api/user/${this.props.user.login.id}`)
-            .then(response => this.setState({user: response.data}))
-        axios.get(`/api/ad/user-ads?id=${this.props.user.login.id}`)
-            .then(response => {
-                console.log(response)
-                let userAdsActive = [];
-                let userAdsInactive = [];
-                response.data.docs.map(ad => {
-                    if(ad.active){
-                        userAdsActive.push(ad)
-                    } else {
-                        userAdsInactive.push(ad)
-                    }
-                })
-                this.setState({userAdsActive, userAdsInactive});
-            })
+        // this.props.dispatch(getUser(this.props.user.login.id))
+        // axios.get(`/api/user/${this.props.user.login.id}`)
+        //     .then(response => this.setState({user: response.data}))
+        this.props.dispatch(userAds(this.props.user.login.id));
     }
 
     logout = () => {
@@ -43,7 +33,14 @@ class UserProfile extends Component {
     handleInactiveFilter = () =>{
         this.setState({active: false, inactive: true})
     }
+
     render() {
+        let activeAds = [], inactiveAds = [];
+        if(this.props.ad.currentUserAds){
+            activeAds = this.props.ad.currentUserAds.activeAds;
+            inactiveAds = this.props.ad.currentUserAds.inactiveAds;
+        }
+
         return (
             <Row className="user-profile">
                 <Col xs="3">
@@ -66,8 +63,8 @@ class UserProfile extends Component {
                         Завершенные</p>
                     </div>
                     <div>
-                        {this.state.active ?  this.state.userAdsActive.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
-                        {this.state.inactive ?  this.state.userAdsInactive.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
+                        {this.state.active ?  activeAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
+                        {this.state.inactive ?  inactiveAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
                     </div>
                 </Col>
             </Row>
@@ -75,4 +72,10 @@ class UserProfile extends Component {
     }
 }
 
-export default withRouter(UserProfile);
+const mapStateToProps = (state) => {
+    return {
+        ad: state.ad
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(UserProfile));

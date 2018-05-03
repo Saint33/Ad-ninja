@@ -1,4 +1,4 @@
-const initialState = {login: {isAuth: false}};
+const initialState = {login: {isAuth: false}, loading: true};
 
 export default (state = initialState, action) => {
     switch(action.type) {
@@ -16,6 +16,11 @@ export default (state = initialState, action) => {
             return {
                 ...state, 
                 login: action.payload
+            }
+        case 'GET_USER_FULFILLED':
+            return {
+                ...state, 
+                currentUser: action.payload
             }
         default: 
             return state;

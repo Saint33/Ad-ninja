@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ad should render correctly 1`] = `
+<div>
+  <Loader
+    active={true}
+    innerClassName="loader-position"
+    type="ball-clip-rotate-multiple"
+  />
+</div>
+`;
