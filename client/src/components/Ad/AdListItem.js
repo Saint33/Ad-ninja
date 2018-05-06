@@ -1,5 +1,4 @@
 import React from 'react';
-import { Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../utility';
 

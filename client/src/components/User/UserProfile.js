@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
-import axios from 'axios';
 import UserProfileAd from '../Ad/AdUserProfile';
-import { logout, getUser } from '../../actions/user';
+import { logout } from '../../actions/user';
 import { userAds } from '../../actions/ad';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';

@@ -8,7 +8,8 @@
     "test-watch": "nodemon NODE_ENV=test --exec \"npm test\"",
     "server": "nodemon server.js",
     "client": "cd ../ && npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd ../ && npm install --prefix client && cd ../ && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",

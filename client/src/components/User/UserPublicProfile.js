@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
-import axios from 'axios';
+
 import AdListItem from '../Ad/AdListItem';
 import { memberSince } from '../../utility';
-import { getUser, getUserWithAds } from '../../actions/user';
-import { userAds } from '../../actions/ad';
+import { getUserWithAds } from '../../actions/user';
 import { connect } from 'react-redux';
 import Loader from 'react-loaders';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
+import { InputGroup, Button, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { login } from '../../actions/user';
 import { withRouter } from 'react-router-dom';

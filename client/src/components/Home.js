@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import AdListItem from './Ad/AdListItem';
 import axios from 'axios';
-import moment from 'moment';
-import { Input, Button } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 class Home extends Component {
     constructor(props){
@@ -40,7 +39,6 @@ class Home extends Component {
     }
 
     loadMore = () => {
-
             axios.get(`/api/ad/ads?skip=${this.state.ads.length}&order=desc&limit=18`)
             .then(response => {
                 this.setState({ads: this.state.ads.concat(response.data)})

@@ -17,7 +17,6 @@ class Ad extends Component {
     render() {
 
         let ad = this.props.ad.currentAd;
-        let loading = this.props.ad.loading;
         let loader = <Loader innerClassName="loader-position" type="ball-clip-rotate-multiple" />
         return (
             <div>
