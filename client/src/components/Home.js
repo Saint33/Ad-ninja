@@ -56,7 +56,7 @@ class Home extends Component {
                 </Row>
                 <Row>
                     <Col xs="9">
-                        {adList.map(item => <AdListItem {...item} key={item._id} />)}
+                        {adList ? adList.map(item => <AdListItem {...item} key={item._id} />) : null}
                         <button className="header__button home__load-more" onClick={this.loadMore}>Загрузить ещё</button>
                     </Col>
 
