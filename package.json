@@ -2,10 +2,14 @@
   "name": "ad-ninja-server",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "10.0.0"
+  },
   "main": "server/index.js",
   "scripts": {
     "test": "jest",
     "test-watch": "nodemon NODE_ENV=test --exec \"npm test\"",
+    "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
