@@ -88,7 +88,7 @@ app.get('/api/file/:filename', function(req, res){
     });
 });
 
-
+app.use(express.static('client/build'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
@@ -98,6 +98,13 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', 'true');
     next();
   });
+
+if(process.env.NODE_ENV === 'production'){
+    const path = require('path');
+    app.get('/*',(req,res)=>{
+        res.sendfile(path.resolve(__dirname,'../client','build','index.html'))
+    })
+}
 
 const port = process.env.PORT || 3001;
 http.listen(port, () => {
