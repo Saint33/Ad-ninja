@@ -15,11 +15,11 @@ const express = require('express'),
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE);
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-  }
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static('client/build'));
+//   }
 
-// app.use(express.static('client/build'));
+app.use(express.static('client/build'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 // app.use((req, res, next) => {
