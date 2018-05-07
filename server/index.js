@@ -15,9 +15,9 @@ const express = require('express'),
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE);
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-  }
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static('client/build'));
+//   }
 
 // app.use(express.static('client/build'));
 app.use(bodyParser.json());
@@ -109,12 +109,12 @@ app.get('/api/file/:filename', function(req, res){
 
 router(app);
 
-// if(process.env.NODE_ENV === 'production'){
-//     const path = require('path');
-//     app.get('/*',(req,res)=>{
-//         res.sendFile(path.resolve(__dirname,'../client','build','index.html'))
-//     })
-// }
+if(process.env.NODE_ENV === 'production'){
+    const path = require('path');
+    app.get('/*',(req,res)=>{
+        res.sendFile(path.resolve(__dirname,'../client','build','index.html'))
+    })
+}
 
 const port = process.env.PORT || 3001;
 http.listen(port, () => {
