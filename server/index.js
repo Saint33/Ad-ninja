@@ -13,7 +13,7 @@ const express = require('express'),
     ObjectId = mongoose.Types.ObjectId;
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DATABASE);
+mongoose.connect(`${config.DATABASE}`);
 
 // if (process.env.NODE_ENV === 'production') {
 //     app.use(express.static('client/build'));
