@@ -30,18 +30,11 @@ app.use((req, res, next) => {
     next();
   });
 
-
-
-
 const conn = mongoose.connection;
 let gfs;
 conn.once('open', () => {
-
-    // Init stream
     gfs = Grid(conn.db, mongoose.mongo);
     gfs.collection('uploads');
-
-    
 });
 
 const { Ad } = require('./models/ad');
@@ -118,7 +111,7 @@ if(process.env.NODE_ENV === 'production'){
 
 const port = process.env.PORT || 3001;
 http.listen(port, () => {
-    console.log(`Server is up on port ${port}`);
+    console.log(`Server is up on port ${port} ${process.env.NODE_ENV} ${process.env.MONGODB_URI}` );
 });
 
 module.exports = { app };
