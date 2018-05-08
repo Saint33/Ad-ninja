@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { InputGroup, Button, Input } from 'reactstrap';
+import { InputGroup, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { login } from '../../actions/user';
-import axios from 'axios';
+import Button from '../UI/button';
+import { register, login } from '../../actions/user';
+import { withRouter } from 'react-router-dom';
 
 class Register extends Component {
     state = { 
         email: '',
         password: '',
-        error: ''
+        error: '',
+        username: '',
+        phone: ''
     }
     
     handleInputEmail = (e) => {
@@ -19,21 +22,56 @@ class Register extends Component {
         this.setState({password: e.target.value})
     }
 
+    handleInputUsername = (e) => {
+        this.setState({username: e.target.value})
+    }
+
+    handleInputPhone = (e) => {
+        this.setState({phone: e.target.value})
+    }
+
     componentWillReceiveProps(nextProps){
-        console.log(nextProps);
+        if(nextProps.user.login.isAuth){
+            console.log(nextProps)
+            this.props.closeModal();
+            this.props.history.push('/');
+        }
     }
 
     submitForm = (e) => {
         e.preventDefault();
-        let loginData = {email:this.state.email, password: this.state.password}
-        axios.post('/api/auth/register', loginData)
-            .then(response => console.log(response))
+        let registrationData = {
+            email: this.state.email, 
+            password: this.state.password,
+            phone: this.state.phone,
+            username: this.state.username
+        }
+        this.props.dispatch(register(registrationData));
     }
 
     render() {
         return (
                 <form className="login" onSubmit={this.submitForm}>
-                    <h2 className="login__title">Регистрация</h2>
+                    <InputGroup>
+                        <Input 
+                            type="text"
+                            placeholder="Имя пользователя"
+                            value={this.state.username}
+                            onChange={this.handleInputUsername}
+                            className="login__input"
+                            />
+                            <br />
+                    </InputGroup>
+                    <InputGroup>
+                        <Input 
+                            type="text"
+                            placeholder="Телефон"
+                            value={this.state.phone}
+                            onChange={this.handleInputPhone}
+                            className="login__input"
+                            />
+                            <br />
+                    </InputGroup>
                     <InputGroup>
                         <Input 
                             type="email"
@@ -55,15 +93,18 @@ class Register extends Component {
                     </InputGroup>
                     <div className="button_wrapper">
                     <Button 
-                        color="primary"
                         type="submit"
-                        className="login__button"
-                    >Войти</Button>
+                    >Зарегистрироваться</Button>
                     </div>
                 </form>
         );
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
 
-export default Register;
+export default connect(mapStateToProps)(withRouter(Register));

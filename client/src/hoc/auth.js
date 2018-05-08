@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../actions/user';
+import Spinner from 'react-spinkit';
 
 export default function(ComposedClass, reload){
 
@@ -15,7 +16,6 @@ export default function(ComposedClass, reload){
         }
 
         componentWillReceiveProps(nextProps) {
-            console.log(nextProps)
             this.setState({loading: false})
 
             if(!nextProps.user.login.isAuth){
@@ -31,7 +31,7 @@ export default function(ComposedClass, reload){
 
         render(){
             if(this.state.loading){
-                return <div className="loader">Loading...</div>
+                return <Spinner className="loader-position" name='folding-cube' fadeIn="none"/>
             }
             return(
                 <ComposedClass {...this.props} user={this.props.user}/>

@@ -3,5 +3,14 @@
     border-radius: 5px;
     padding: 5px;
     color: white;
-    margin-top: 40px;
+    margin: auto auto 0 auto;
+}
+
+.footer-wrapper {
+    position: relative;
+    bottom: 0;
+}
+
+.footer__title {
+    margin: auto;
 }

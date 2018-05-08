@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { InputGroup, Button, Input } from 'reactstrap';
+import { InputGroup, Input } from 'reactstrap';
+import Button from '../UI/button';
 import { connect } from 'react-redux';
 import { login } from '../../actions/user';
 import { withRouter } from 'react-router-dom';
+import ErrorMessage from './errorMessage';
 
 class Login extends Component {
     state = { 
@@ -20,8 +22,6 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log(nextProps);
-
         if(nextProps.user.login.isAuth){
             this.props.closeModal();
             this.props.history.push('/');
@@ -37,7 +37,6 @@ class Login extends Component {
     render() {
         return (
                 <form className="login" onSubmit={this.submitForm}>
-                    <h2 className="login__title">Вход</h2>
                     <InputGroup>
                         <Input 
                             type="email"
@@ -59,18 +58,16 @@ class Login extends Component {
                     </InputGroup>
                     <div className="button_wrapper">
                     <Button 
-                        color="primary"
                         type="submit"
-                        className="login__button"
                     >Войти</Button>
                     </div>
+                    <ErrorMessage />
                 </form>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         user: state.user
     }

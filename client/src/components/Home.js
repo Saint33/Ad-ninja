@@ -3,6 +3,8 @@ import { Row, Col } from 'reactstrap';
 import AdListItem from './Ad/AdListItem';
 import axios from 'axios';
 import { Input } from 'reactstrap';
+import Button from './UI/button';
+
 
 class Home extends Component {
     constructor(props){
@@ -51,8 +53,13 @@ class Home extends Component {
         return (
             <div>
                 <Row className="header-search"> 
-                    <Input className="header-search__input" onChange={this.handleInputChange}/>
-                    <button className="header__button header-search__button" onClick={this.handleQuery}>Найти</button>
+                    <input 
+                        className="header-search__input" 
+                        type="text" 
+                        onChange={this.handleInputChange}
+                        placeholder="Поиск по объявлениям"
+                    />
+                    <Button onClick={this.handleQuery}>Найти</Button>
                 </Row>
                 <Row>
                     <Col xs="9">

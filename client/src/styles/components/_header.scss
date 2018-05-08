@@ -29,25 +29,6 @@
     color: #9C9300;
 }
 
-.header__button {
-    background-color: black;
-    color: white;
-    border-color: black;
-    border-radius: 5px;
-    padding: 5px 5px 30px 5px;
-    cursor: pointer;
-    transition-duration: 0.2s;
-    height: 30px;
-    margin-right: 20px;
-}
-
-.header__button:hover {
-    background-color: #4A4A4A;
-    border-color: #4A4A4A;
-    text-decoration: none;
-    color:white;
-}
-
 .header__button-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -71,8 +52,35 @@
 
 .header-search {
     justify-content: center;
+    margin-top: 5px;
+    
 }
 
 .header-search__input {
-    width: 50% !important;
+    margin-right: 5px;
+    outline: none;
+    width: 30% ;
+    transition: 0.4s;
+    border: 1px solid #ccc;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+
+	font-size: 15px;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+}
+
+.header-search__input:focus {
+    border: 1px solid $main-color;
+    width: 50%;
+}
+
+.modal-title{
+    cursor: pointer;
+}
+
+.modal-title-active {
+    color: $main-color;
 }

@@ -2,8 +2,9 @@ import React from 'react';
 import { Row } from 'reactstrap';
 
 const Footer = () => (
+
     <Row className="footer"> 
-        Footer
+        <span className="footer__title">© Add-Ninja 2018</span>
     </Row>
 )
 

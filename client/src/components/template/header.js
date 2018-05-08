@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import Modal from 'react-modal';
 import Login from '../auth/login';
+import Register from '../auth/register';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Button from '../UI/button';
 
 const customStyles = {
     content : {
@@ -21,7 +23,9 @@ class Header extends Component {
         super();
     
         this.state = {
-          modalIsOpen: false
+          modalIsOpen: false,
+          login: true,
+          register: false
         };
     
         this.openModal = this.openModal.bind(this);
@@ -34,6 +38,14 @@ class Header extends Component {
     
     closeModal() {
         this.setState({modalIsOpen: false});
+    }
+
+    handleLogin = () => {
+        this.setState((prevState) => ({...prevState, login: true, register: false}))
+    }
+
+    handleRegistration = () => {
+        this.setState((prevState) => ({...prevState, login: false, register: true}))
     }
 
     render(){
@@ -49,8 +61,13 @@ class Header extends Component {
                     onRequestClose={this.closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
-                    >
-                        <Login closeModal={this.closeModal}/>
+                    >   <h2 className="login__title">
+                            <span className={this.state.login ? 'modal-title-active modal-title': 'modal-title'} onClick={this.handleLogin}>Вход</span> / 
+                            <span className={this.state.register ? 'modal-title-active modal-title' : 'modal-title'} onClick={this.handleRegistration}>Регистрация</span> 
+                        </h2>
+                        <div>
+                            { this.state.login ? <Login closeModal={this.closeModal}/> : <Register closeModal={this.closeModal}/>}
+                        </div>
                     </Modal>
                 </Row>
                 <Row className="header">
@@ -64,7 +81,7 @@ class Header extends Component {
                         <Link to="/" className="header__link">Услуги</Link>
                     </Col>
                     <Col >
-                        <div className="header__button-wrapper"><Link to="/additem" className="header__button">Подать объявление</Link></div>
+                        <div className="header__button-wrapper"><Link to="/additem" className="button">Подать объявление</Link></div>
                     </Col>
                 </Row>
             </div>

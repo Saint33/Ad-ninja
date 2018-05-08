@@ -3,19 +3,10 @@ $main-color: #FFDD00;
 $secondary-color: #080700;
 $date-color: #6B6B6B;
 
-@import 'loaders.css/src/animations/ball-clip-rotate-multiple.scss';
 @import url('https://fonts.googleapis.com/css?family=Trade+Winds');
 
-.loader-hidden {
-  display: none;
-}
-.loader-active {
-  display: block;
-}
-
 .loader-position {
-    position: fixed;
+    position: fixed !important;
     top:50%;
     left:50%;
 }
-

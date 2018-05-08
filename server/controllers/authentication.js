@@ -26,12 +26,12 @@ exports.auth = (req, res, next) => {
 exports.login = (req, res, next) => {
 
     User.findOne({'email': req.body.email}, (err, user) => {
-        if(!user) return res.status(400).json({isAuth: false, message: 'Auth failed, email not found'});
+        if(!user) return res.status(400).json({isAuth: false, errorMessage: 'Пользователь с данной почтой не зарегистрирован'});
         
         user.comparePassword(req.body.password, (err, isMatch) => {
             if(!isMatch) return res.status(400).json({
                 isAuth: false, 
-                message: 'Wrong password'
+                errorMessage: 'Неверный пароль'
             });
 
             user.generateToken((err, user) => {

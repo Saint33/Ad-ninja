@@ -111,7 +111,7 @@ if(process.env.NODE_ENV === 'production'){
 
 const port = process.env.PORT || 3001;
 http.listen(port, () => {
-    console.log(`Server is up on port ${port} ${process.env.NODE_ENV} ${config.DATABASE}` );
+    console.log(`Server is up on port ${port}`);
 });
 
 module.exports = { app };

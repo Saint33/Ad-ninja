@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import Loader from 'react-loaders'
+import Spinner from 'react-spinkit';
 import FaPhone from 'react-icons/lib/fa/phone';
 import { formatDate, memberSince } from '../../utility';
 import { connect } from 'react-redux';
@@ -15,9 +15,8 @@ class Ad extends Component {
     }
 
     render() {
-
         let ad = this.props.ad.currentAd;
-        let loader = <Loader innerClassName="loader-position" type="ball-clip-rotate-multiple" />
+        let loader = <Spinner className="loader-position" name='folding-cube' fadeIn="none"/>;
         return (
             <div>
                 { !ad ? loader : 

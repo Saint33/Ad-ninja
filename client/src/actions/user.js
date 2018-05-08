@@ -4,9 +4,10 @@ import { userAds } from './ad';
 export const login = ({email, password}) => {
     const request = axios.post('/api/auth/login', {email, password})
         .then(response => response.data)
+
     return{
         type: 'USER_LOGIN',
-        payload: request
+        payload: request.catch(error => error.response.data)
     }
 }
 
@@ -17,6 +18,17 @@ export const auth = () => {
     return {
         type: 'USER_AUTH',
         payload: request
+    }
+}
+
+export const register = (registrationData) => {
+    const request = axios.post('/api/auth/register', registrationData)
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            const { email, password } = registrationData;
+            dispatch(login({email, password}))
+        })
     }
 }
 
