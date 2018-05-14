@@ -46,7 +46,7 @@ exports.deleteAd = (req, res, next) => {
     let id = req.query.id;
     Ad.findByIdAndRemove(id, (err,doc) => {
         if(err) return res.status(400).send(err);
-        res.json(true);
+        res.json({success: true, id});
     });
 };
 

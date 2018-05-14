@@ -6,14 +6,20 @@ import { userAds } from '../../actions/ad';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
+import { Switch, Route } from 'react-router';
+import UserMessages from './UserMessages';
+import UserFavorites from './UserFavorites';
+import UserAds from './UserAds';
+import { NavLink } from 'react-router-dom';
 
 class UserProfile extends Component {
     state = { 
         userAdsActive: [],
         userAdsInactive: [],
-        active: false,
-        inactive: false
-     }
+        showActive: false,
+        showInactive: false
+    }
+
     componentWillMount() {
         // this.props.dispatch(getUser(this.props.user.login.id))
         // axios.get(`/api/user/${this.props.user.login.id}`)
@@ -27,10 +33,10 @@ class UserProfile extends Component {
     }
 
     handleActiveFilter = () => {
-        this.setState({active: true, inactive: false})
+        this.setState({showActive: true, showInactive: false})
     }
     handleInactiveFilter = () =>{
-        this.setState({active: false, inactive: true})
+        this.setState({showActive: false, showInactive: true})
     }
 
     render() {
@@ -43,8 +49,8 @@ class UserProfile extends Component {
         return (
             <Row className="user-profile">
                 <Col xs="3">
-                    <p className="user-profile__navigation-link">Мои объявления</p>
-                    <Motion
+                    <NavLink activeClassName="active-filter" to="/user/profile/ads" className="user-profile__navigation-link">Мои объявления</NavLink>
+                    {/* <Motion
                         defaultStyle={{x: -300, opacity: 0}} 
                         style={{x: spring(0), opacity: spring(1, {stiffness: 110, damping: 50})}}
                     >
@@ -54,28 +60,48 @@ class UserProfile extends Component {
                                         opacity: style.opacity 
                                     }}
                                     >Сообщения</p>}
-                    </Motion>
-                    <p className="user-profile__navigation-link">Настройки</p>
-                    <p className="user-profile__navigation-link" onClick={this.logout}>Выйти</p>
+                    </Motion> */}
+                    <NavLink 
+                        exact 
+                        activeClassName="active-filter" 
+                        to="/user/profile/messages" 
+                        className="user-profile__navigation-link">
+                    Сообщения</NavLink>
+                    <NavLink 
+                        exact 
+                        activeClassName="active-filter" 
+                        to="/user/profile/favorites" 
+                        className="user-profile__navigation-link">
+                    Избранное</NavLink>
+                    <NavLink 
+                        exact 
+                        activeClassName="active-filter" 
+                        to="/" className="user-profile__navigation-link">
+                        Настройки</NavLink>
+                    <NavLink 
+                        exact 
+                        activeClassName="active-filter" 
+                        to="/" 
+                        className="user-profile__navigation-link" 
+                        onClick={this.logout}>Выйти</NavLink>
                 </Col>
-                <Col>
+                <Col>    
                     <div>
-                        <p 
-                            className={this.state.active? 'user-profile__filter active-filter' : 'user-profile__filter'} 
-                            onClick={this.handleActiveFilter}
-                        >
-                        Активные</p>
-                        <p 
-                            className={this.state.inactive? 'user-profile__filter active-filter' : 'user-profile__filter'} 
-                            onClick={this.handleInactiveFilter}
-                        >
-                        Завершенные</p>
-                    </div>
-                    
-                    <div>
-                        
-                            {this.state.active ?  activeAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
-                            {this.state.inactive ?  inactiveAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
+                        <Switch>
+                            <Route path="/user/profile/messages" component={UserMessages} />
+                            <Route path="/user/profile/favorites" component={UserFavorites}/>
+                            <Route path="/user/profile/ads" render={() => 
+                                <UserAds 
+                                    ads={this.props.ad.currentUserAds}
+                                    showActive={this.state.showActive}
+                                    showInactive={this.state.showInactive}
+                                    handleActiveFilter={this.handleActiveFilter.bind(this)}
+                                    handleInactiveFilter={this.handleInactiveFilter.bind(this)}
+                                />} 
+                            />
+                        </Switch>
+                            {/* {this.state.active ?  activeAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
+                            {this.state.inactive ?  inactiveAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null} */}
                     </div>
                 </Col>
             </Row>

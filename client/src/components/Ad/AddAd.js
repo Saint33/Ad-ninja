@@ -2,6 +2,7 @@ import React from 'react';
 import { Col,  Row, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 
 class AddAd extends React.Component {
     state = {
@@ -45,7 +46,7 @@ class AddAd extends React.Component {
                 let image = this.state.image;
                 image.append('id', id);
                 axios.post('/api/upload', image)
-                    .then(response => console.log(response))
+                    .then(response => this.props.history.push(`/ad/${id}`))
             })
     }
 
@@ -135,4 +136,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps)(AddAd);
+export default connect(mapStateToProps)(withRouter(AddAd));

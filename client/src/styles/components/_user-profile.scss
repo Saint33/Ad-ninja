@@ -13,4 +13,7 @@
 }
 .user-profile__navigation-link {
     cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: $secondary-color;
 }

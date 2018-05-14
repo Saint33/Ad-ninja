@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import Spinner from 'react-spinkit';
+import Loader from '../UI/spinner';
 import FaPhone from 'react-icons/lib/fa/phone';
 import { formatDate, memberSince } from '../../utility';
 import { connect } from 'react-redux';
@@ -77,11 +77,10 @@ class Ad extends Component {
         }
         // let ad = this.props.ad.currentAd;
         
-        let loader = <Spinner className="loader-position" name='folding-cube' fadeIn="none"/>;
         let showAdLocation = this.state.adLocation.show;
         return (
             <div>
-                { !ad ? loader : 
+                { !ad ? <Loader /> : 
             <Row className="adv-item">
             <Col xs={{ size: 7, offset: 1 }}>
                 <div>
@@ -105,35 +104,31 @@ class Ad extends Component {
                                 height: showAdLocation ? spring(400, {stiffness: 110, damping: 50}) : spring(0, {stiffness: 210, damping: 50})
                             }}
                     >
-
                     {style =>
-                    <div
-                        style={{ 
-                            
-                        }}
-                    >
-                        <Map 
-   
-                            lat={this.state.adLocation.lat}
-                            lng={this.state.adLocation.lng}
-                            isMarkerShown
-                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRutUyMhVs4Af7j54h-Iqpg3dWfPHkhew&callback=myMap"
-                            loadingElement={<div style={{ height: `100%` }} />}
-                            containerElement={<div style={{ height: `${style.height}px` }} />}
-                            mapElement={<div style={{ height: `100%`, opacity: style.opacity }} />} 
-                        /> 
+                    <div>
+                        {this.state.adLocation.adLocationFetched ? 
+                            <Map 
+                                lat={this.state.adLocation.lat}
+                                lng={this.state.adLocation.lng}
+                                isMarkerShown
+                                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRutUyMhVs4Af7j54h-Iqpg3dWfPHkhew&callback=myMap"
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={<div style={{ height: `${style.height}px` }} />}
+                                mapElement={<div style={{ height: `100%`, opacity: style.opacity }} />} 
+                            /> 
+                            : null
+                    }
+
                     </div>
                     }
                     </Motion>
-
                     </div>
-
-
                     <p className="adv-item__info-description"> 
                         {ad.description}
                     </p>
                 </div>
                 <div className="adv-item__similar-ads">
+                <h4>Похожие объявления</h4>
                 { this.state.similarAds.length > 0 ? 
                     this.state.similarAds.slice(0, 6).map(ad => <AdListItem {...ad} key={ad._id}/> ) 
                     : <h4>Похожих объявлений нет:(</h4>
@@ -153,7 +148,6 @@ class Ad extends Component {
                         <div className="adv-item__sellers-info_adress">
                             <span className="adv-item__sellers-info_adress-title">Адрес:</span>
                             <span className="adv-item__sellers-info_adress-value">{ad.owner.address}</span>
-
                         </div>
                     </div>
                 </Col>
