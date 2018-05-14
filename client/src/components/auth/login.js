@@ -56,12 +56,14 @@ class Login extends Component {
                             className="login__input"
                         />
                     </InputGroup>
-                    <div className="button_wrapper">
-                    <Button 
-                        type="submit"
-                    >Войти</Button>
+                    <div className="button_wrapper" key="button">
+                        <Button   key="buttondassd"
+                            type="submit"
+                        >Войти</Button>
                     </div>
-                    <ErrorMessage />
+                    
+                        <ErrorMessage />
+
                 </form>
         );
     }

@@ -6,6 +6,7 @@ import Register from '../auth/register';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../UI/button';
+import { Animated } from "react-animated-css";
 
 const customStyles = {
     content : {
@@ -56,23 +57,29 @@ class Header extends Component {
                 { user.isAuth ? <Link to="/user/profile" className="header-login__user">{user.username}</Link>
                     : <Link to="" className="header-login__user" onClick={this.openModal}>Вход и регистрация</Link>}
                     <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
+                        isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.afterOpenModal}
+                        onRequestClose={this.closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal"
                     >   <h2 className="login__title">
                             <span className={this.state.login ? 'modal-title-active modal-title': 'modal-title'} onClick={this.handleLogin}>Вход</span> / 
                             <span className={this.state.register ? 'modal-title-active modal-title' : 'modal-title'} onClick={this.handleRegistration}>Регистрация</span> 
                         </h2>
                         <div>
-                            { this.state.login ? <Login closeModal={this.closeModal}/> : <Register closeModal={this.closeModal}/>}
+                            { this.state.login ? 
+                            <Login closeModal={this.closeModal}/> : 
+                            <Register closeModal={this.closeModal}/>
+                            }
                         </div>
                     </Modal>
                 </Row>
                 <Row className="header">
                     <Col xs="3" md="3" lg="4">
-                        <Link to="/" className="header__title">Ad Ninja</Link>
+
+                    <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+                        <Link to="/" className="header__title" key="title">Ad Ninja</Link>
+                    </Animated>
                     </Col>
                     <Col>
                         <Link to="/" className="header__link">Авто</Link>

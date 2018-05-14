@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class AddAd extends React.Component {
     state = {
         adInfo: {
-            category: '',
+            category: 'cars',
             title: '',
             description: '',
             price: '',

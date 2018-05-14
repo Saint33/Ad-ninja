@@ -11,6 +11,7 @@ import UserProfile from './components/User/UserProfile';
 import login from './components/auth/login';
 import UserPublicProfile from './components/User/UserPublicProfile';
 import Register from './components/auth/register';
+import { Fade } from 'reactstrap';
 
 const Routes = () => (
     <Layout>

@@ -6,6 +6,7 @@ import { memberSince } from '../../utility';
 import { getUserWithAds } from '../../actions/user';
 import { connect } from 'react-redux';
 import Loader from 'react-loaders';
+import Spinner from 'react-spinkit';
 
 class UserPublicProfile extends Component {
     state = { 
@@ -32,7 +33,7 @@ class UserPublicProfile extends Component {
 
     render() {
 
-        let loader = <Loader innerClassName="loader-position" type="ball-clip-rotate-multiple" />
+        let loader = <Spinner className="loader-position" name='folding-cube' fadeIn="none"/>;
         let user = this.props.user.currentUser;
         let userAds = this.props.ad.currentUserAds;
 

@@ -5,10 +5,10 @@ import { logout } from '../../actions/user';
 import { userAds } from '../../actions/ad';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Motion, spring } from 'react-motion';
 
 class UserProfile extends Component {
     state = { 
-
         userAdsActive: [],
         userAdsInactive: [],
         active: false,
@@ -44,7 +44,17 @@ class UserProfile extends Component {
             <Row className="user-profile">
                 <Col xs="3">
                     <p className="user-profile__navigation-link">Мои объявления</p>
-                    <p className="user-profile__navigation-link">Сообщения</p>
+                    <Motion
+                        defaultStyle={{x: -300, opacity: 0}} 
+                        style={{x: spring(0), opacity: spring(1, {stiffness: 110, damping: 50})}}
+                    >
+                        {style => <p className="user-profile__navigation-link" 
+                                    style={{ 
+                                        transform: `translateX(${style.x}px)`,
+                                        opacity: style.opacity 
+                                    }}
+                                    >Сообщения</p>}
+                    </Motion>
                     <p className="user-profile__navigation-link">Настройки</p>
                     <p className="user-profile__navigation-link" onClick={this.logout}>Выйти</p>
                 </Col>
@@ -61,9 +71,11 @@ class UserProfile extends Component {
                         >
                         Завершенные</p>
                     </div>
+                    
                     <div>
-                        {this.state.active ?  activeAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
-                        {this.state.inactive ?  inactiveAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
+                        
+                            {this.state.active ?  activeAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
+                            {this.state.inactive ?  inactiveAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
                     </div>
                 </Col>
             </Row>

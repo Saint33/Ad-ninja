@@ -4,8 +4,6 @@ import AdListItem from './Ad/AdListItem';
 import axios from 'axios';
 import { Input } from 'reactstrap';
 import Button from './UI/button';
-
-
 class Home extends Component {
     constructor(props){
         super(props);
