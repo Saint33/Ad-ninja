@@ -38,7 +38,7 @@ class AddAd extends React.Component {
     }
     handleFormSubmit = (e) => {
         e.preventDefault();
-        axios.post('/api/ad', this.state.adInfo) 
+        axios.post('/api/ad', {...this.state.adInfo, ownerId: this.props.user.login.id}) 
             .then(response => {
                 console.log(response);
                 let id = response.data.AdId;

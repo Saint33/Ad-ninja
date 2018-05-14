@@ -10,6 +10,7 @@ import { Animated } from "react-animated-css";
 import Map from '../Map';
 import axios from 'axios';
 import { Motion, spring } from 'react-motion';
+import AdListItem from './AdListItem';
 
 class Ad extends Component {
 
@@ -17,9 +18,10 @@ class Ad extends Component {
         adLocation:{
             adLocationFetched: false,
             show: false,
-            lat: '',
-            lng: ''
-        }
+            lat: 47.2984021,
+            lng: 39.763526
+        },
+        similarAds: []
     }
 
     componentWillMount(){
@@ -29,6 +31,9 @@ class Ad extends Component {
     componentWillReceiveProps(nextProps){
         if(nextProps.ad.currentAd.address){
             this.getAdLocation(nextProps.ad.currentAd.address)
+        }
+        if(nextProps.ad.currentAd.title){
+            this.getSimilarAds(nextProps.ad.currentAd.title)
         }
     }
 
@@ -51,6 +56,15 @@ class Ad extends Component {
                         lng: response.data.results[0].geometry.location.lng
                     }
                 })
+            })
+    }
+
+    getSimilarAds(title){
+        axios.get(`/api/ad/find?query=${title}`)
+            .then(response => {
+                console.log(response)
+                let similarAds = response.data.filter(ad => ad._id !== this.props.match.params.id)
+                this.setState({ ...this.state, similarAds })
             })
     }
 
@@ -87,7 +101,7 @@ class Ad extends Component {
   
                     <Motion
                         defaultStyle={{opacity: 0, height: 0}} 
-                        style={{opacity:spring(1, {stiffness: 10, damping: 26}), 
+                        style={{opacity:spring(1), 
                                 height: showAdLocation ? spring(400, {stiffness: 110, damping: 50}) : spring(0, {stiffness: 210, damping: 50})
                             }}
                     >
@@ -100,8 +114,8 @@ class Ad extends Component {
                     >
                         <Map 
    
-                            lat={this.state.adLocation ? this.state.adLocation.lat :  47.2984021}
-                            lng={this.state.adLocation ? this.state.adLocation.lng : 39.763526}
+                            lat={this.state.adLocation.lat}
+                            lng={this.state.adLocation.lng}
                             isMarkerShown
                             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRutUyMhVs4Af7j54h-Iqpg3dWfPHkhew&callback=myMap"
                             loadingElement={<div style={{ height: `100%` }} />}
@@ -119,23 +133,29 @@ class Ad extends Component {
                         {ad.description}
                     </p>
                 </div>
+                <div className="adv-item__similar-ads">
+                { this.state.similarAds.length > 0 ? 
+                    this.state.similarAds.slice(0, 6).map(ad => <AdListItem {...ad} key={ad._id}/> ) 
+                    : <h4>Похожих объявлений нет:(</h4>
+                }
+                </div>
             </Col>      
                 <Col className="adv-item__sideinfo" xs={{ size: 3 }}>
                     <span className="adv-item__price">{ad.price} ₽</span>
-                    <div className="adv-item__selers-info">
-                        <div className="adv-item__selers-info_phone">
-                            <FaPhone size={20} className="phone-icon"/>
-                            <span >{ad.owner.phone}</span>
+                    <div className="adv-item__sellers-info">
+                        <div className="adv-item__sellers-info_phone">
+                            <FaPhone size={24} className="phone-icon"/>
+                            <span className="sellers-phone">{ad.owner.phone}</span>
                         </div>
-                            <Link to={`/user/${ad.owner._id}`} className="adv-item__selers-info_name">{ad.owner.firstname}</Link>
-                            <span className="adv-item__selers-info_reg">На Add-ninja c {memberSince(ad.owner.createdAt)}</span>
-                        <div className="adv-item__selers-info_adress">
-                            <span className="adv-item__selers-info_adress-title">Адрес:</span>
-                            <span className="adv-item__selers-info_adress-value">{ad.owner.address}</span>
+                            <span>Продавец</span>
+                            <Link to={`/user/${ad.owner._id}`} className="adv-item__sellers-info_name">{ad.owner.firstname}</Link>
+                            <span className="adv-item__sellers-info_reg">На Add-ninja c {memberSince(ad.owner.createdAt)}</span>
+                        <div className="adv-item__sellers-info_adress">
+                            <span className="adv-item__sellers-info_adress-title">Адрес:</span>
+                            <span className="adv-item__sellers-info_adress-value">{ad.owner.address}</span>
 
                         </div>
                     </div>
-
                 </Col>
 
             </Row>
@@ -152,12 +172,3 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(mapStateToProps)(Ad);
-
-{/* <iframe
-style={{
-    width:"600",
-    height:"450",
-    frameborder:"0"
-}}
-src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCRutUyMhVs4Af7j54h-Iqpg3dWfPHkhew&q=Ростов-на-Дону, Днепровский 124Г" allowFullScreen>
-</iframe> */}

@@ -35,29 +35,40 @@
 }
 
 .adv-item__sideinfo {
-    border-left: 1px dashed $main-color;
+    border-left: 1px solid #ccc;
 }
 
-.adv-item__selers-info_phone {
+.adv-item__sellers-info_phone {
     padding: 8px;
-    background: #FFFDD7;
-    border: 1px solid #9C9300;
+    background: $main-color;
+    border: 1px solid $secondary-color;
+
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
-.adv-item__selers-info_name{
+.sellers-phone {
+    font-size: 20px;
+    @media(max-width: 1200px){
+        font-size: 18px;
+    }
+    @media(max-width: 991px){
+        font-size: 15px;
+    }
+}
+
+.adv-item__sellers-info_name{
     display: block;
     font-size: 18px;
 }
 
-.adv-item__selers-info_reg {
+.adv-item__sellers-info_reg {
     display: block;
     font-size: 15px;
     margin-bottom: 20px;
 }
 
-.adv-item__selers-info_ads {
+.adv-item__sellers-info_ads {
     display: block;
     border: 1px solid grey;
     border-radius: 5px;
@@ -65,17 +76,17 @@
     width: 100%;
     font-style: italic;
 }
-.adv-item__selers-info_adress {
+.adv-item__sellers-info_adress {
     margin: 20px 0;
 }
 
-.adv-item__selers-info_adress-title {
+.adv-item__sellers-info_adress-title {
     display: block;
     font-size: 15px;
     color: $date-color;
 }
 
-.adv-item__selers-info_adress-value {
+.adv-item__sellers-info_adress-value {
 
 }
 
@@ -98,4 +109,9 @@
 
 .phone-icon {
     margin-right: 6px;
+}
+
+.adv-item__similar-ads {
+    
+
 }

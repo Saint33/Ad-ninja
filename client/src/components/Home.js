@@ -4,6 +4,8 @@ import AdListItem from './Ad/AdListItem';
 import axios from 'axios';
 import { Input } from 'reactstrap';
 import Button from './UI/button';
+import Spinner from 'react-spinkit';
+
 class Home extends Component {
     constructor(props){
         super(props);
@@ -47,6 +49,7 @@ class Home extends Component {
 
     render(){
         let adList = this.state.ads;
+        let loader = <Spinner className="loader-position" name='folding-cube' fadeIn="none"/>;
 
         return (
             <div>
@@ -61,7 +64,7 @@ class Home extends Component {
                 </Row>
                 <Row>
                     <Col xs="9">
-                        {adList ? adList.map(item => <AdListItem {...item} key={item._id} />) : null}
+                        {adList ? adList.map(item => <AdListItem {...item} key={item._id} />) : loader}
                         <button className="header__button home__load-more" onClick={this.loadMore}>Загрузить ещё</button>
                     </Col>
 
