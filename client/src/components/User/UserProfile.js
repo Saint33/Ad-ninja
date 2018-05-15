@@ -24,7 +24,7 @@ class UserProfile extends Component {
         // this.props.dispatch(getUser(this.props.user.login.id))
         // axios.get(`/api/user/${this.props.user.login.id}`)
         //     .then(response => this.setState({user: response.data}))
-        this.props.dispatch(userAds(this.props.user.login.id));
+        this.props.dispatch(userAds(this.props.user.id));
     }
 
     logout = () => {

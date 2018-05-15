@@ -25,7 +25,8 @@ const userSchema = mongoose.Schema({
         maxlength: 100
     },
     username: {
-        type: String
+        type: String,
+        required: true
     },
     age: {
         type: Number
@@ -53,7 +54,8 @@ const userSchema = mongoose.Schema({
         type: String
     },
     phone: {
-        type: String
+        type: String,
+        required: true
     },
     address: {
         type: String

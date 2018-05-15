@@ -16,4 +16,5 @@ const UserAds = ({ads, showActive, showInactive, handleActiveFilter, handleInact
         {showActive? ads.activeAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
         {showInactive? ads.inactiveAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
     </div>)
+    
 export default UserAds;

@@ -1,4 +1,4 @@
-const initialState = {login: {isAuth: false, errorMessage: ''}};
+const initialState = {login: {isAuth: false, errorMessage: ''}, loginModalIsOpen: false};
 
 export default (state = initialState, action) => {
     switch(action.type) {
@@ -32,6 +32,16 @@ export default (state = initialState, action) => {
                 ...state,
                 login: action.payload.user,
                 success: action.payload.success
+            }
+        case 'OPEN_MODAL':
+            return {
+                ...state,
+                loginModalIsOpen: true
+            }
+        case 'CLOSE_MODAL':
+            return {
+                ...state,
+                loginModalIsOpen: false
             }
         default: 
             return state;

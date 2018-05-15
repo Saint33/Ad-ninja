@@ -96,8 +96,6 @@ class Ad extends Component {
                         <span className="adv-item__info-address_title">Адрес:</span>
                         <span className="adv-item__info-address_value">{ad.address}</span>
                         <button onClick={this.showMap}>Показать карту</button>
-                        
-  
                     <Motion
                         defaultStyle={{opacity: 0, height: 0}} 
                         style={{opacity:spring(1), 
@@ -116,9 +114,7 @@ class Ad extends Component {
                                 containerElement={<div style={{ height: `${style.height}px` }} />}
                                 mapElement={<div style={{ height: `100%`, opacity: style.opacity }} />} 
                             /> 
-                            : null
-                    }
-
+                            : null}
                     </div>
                     }
                     </Motion>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../actions/user';
 import Spinner from 'react-spinkit';
+import { openModal } from '../actions/user';
 
 export default function(ComposedClass, reload){
 
@@ -18,9 +19,11 @@ export default function(ComposedClass, reload){
         componentWillReceiveProps(nextProps) {
             this.setState({loading: false})
 
-            if(!nextProps.user.login.isAuth){
+            if(!nextProps.user.isAuth){
                 if(reload === true){
-                    this.props.history.push('/login');                
+                    // this.props.history.push('/login');  
+                    this.props.history.push('/');
+                    this.props.dispatch(openModal())                
                 }
             } else {
                 if(reload === false){
@@ -41,7 +44,7 @@ export default function(ComposedClass, reload){
 
     const mapStateToProps = (state) => {
         return {
-            user: state.user
+            user: state.user.login
         }
     }
 
