@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdListItem renders correctly 1`] = `
+<div
+  className="adv-list-item"
+>
+  <Link
+    replace={false}
+    to="/ad/322"
+  >
+    <img
+      alt="Обьявление"
+      className="adv-list-item__image"
+      src="/api/file/41a01da6f831c2b85302cba1a331cfa7"
+    />
+  </Link>
+  <div
+    className="adv-list-item__description"
+  >
+    <Link
+      className="adv-list-item__description_title"
+      replace={false}
+      to="/ad/322"
+    >
+      fake title
+    </Link>
+    <span
+      className="adv-list-item__description_price"
+    >
+      300
+       р.
+    </span>
+    <span
+      className="adv-list-item__description_date"
+    >
+      30 April 15:08
+    </span>
+  </div>
+</div>
+`;

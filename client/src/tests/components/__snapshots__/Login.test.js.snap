@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Component should be called with the email and password in the state as arguments 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Login
+    dispatch={[Function]}
+  >
+    <form
+      className="login"
+      onSubmit={[Function]}
+    >
+      <InputGroup
+        tag="div"
+      >
+        <div
+          className="input-group"
+        >
+          <Input
+            className="login__input"
+            name="email"
+            onChange={[Function]}
+            placeholder="Электронная почта"
+            type="email"
+            value="fakeuser@mail.com"
+          >
+            <input
+              className="login__input form-control"
+              name="email"
+              onChange={[Function]}
+              placeholder="Электронная почта"
+              type="email"
+              value="fakeuser@mail.com"
+            />
+          </Input>
+          <br />
+        </div>
+      </InputGroup>
+      <InputGroup
+        tag="div"
+      >
+        <div
+          className="input-group"
+        >
+          <Input
+            className="login__input"
+            name="password"
+            onChange={[Function]}
+            placeholder="Пароль"
+            type="password"
+            value="fakepassword"
+          >
+            <input
+              className="login__input form-control"
+              name="password"
+              onChange={[Function]}
+              placeholder="Пароль"
+              type="password"
+              value="fakepassword"
+            />
+          </Input>
+        </div>
+      </InputGroup>
+      <div
+        className="button_wrapper"
+        key="button"
+      >
+        <Button
+          key="buttondassd"
+          type="submit"
+        >
+          <button
+            className="button"
+            type="submit"
+          >
+            Войти
+          </button>
+        </Button>
+      </div>
+      <Connect(ErrorMessage)>
+        <ErrorMessage
+          dispatch={[Function]}
+          errorMessage=""
+        />
+      </Connect(ErrorMessage)>
+    </form>
+  </Login>
+</Provider>
+`;

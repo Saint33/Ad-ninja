@@ -5,7 +5,7 @@ import Button from '../UI/button';
 import { register, login } from '../../actions/user';
 import { withRouter } from 'react-router-dom';
 
-class Register extends Component {
+export class Register extends Component {
     state = { 
         email: '',
         password: '',
@@ -59,6 +59,7 @@ class Register extends Component {
                             value={this.state.username}
                             onChange={this.handleInputUsername}
                             className="login__input"
+                            name="username"
                             />
                             <br />
                     </InputGroup>
@@ -69,6 +70,7 @@ class Register extends Component {
                             value={this.state.phone}
                             onChange={this.handleInputPhone}
                             className="login__input"
+                            name="phone"
                             />
                             <br />
                     </InputGroup>

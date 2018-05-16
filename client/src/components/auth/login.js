@@ -6,7 +6,7 @@ import { login } from '../../actions/user';
 import { withRouter } from 'react-router-dom';
 import ErrorMessage from './errorMessage';
 
-class Login extends Component {
+export class Login extends Component {
     state = { 
         email: '',
         password: '',
@@ -36,7 +36,7 @@ class Login extends Component {
 
     render() {
         return (
-                <form className="login" onSubmit={this.submitForm}>
+                <form className="login" onSubmit={this.submitForm} >
                     <InputGroup>
                         <Input 
                             type="email"
@@ -44,7 +44,8 @@ class Login extends Component {
                             value={this.state.email}
                             onChange={this.handleInputEmail}
                             className="login__input"
-                            />
+                            name="email"
+                        />
                             <br />
                     </InputGroup>
                     <InputGroup>
@@ -54,6 +55,7 @@ class Login extends Component {
                             value={this.state.password}
                             onChange={this.handleInputPassword}
                             className="login__input"
+                            name="password"
                         />
                     </InputGroup>
                     <div className="button_wrapper" key="button">

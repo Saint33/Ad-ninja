@@ -70,7 +70,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "test:watch": "jest --watch"
   },
   "proxy": {
     "/api/": {
@@ -89,7 +90,7 @@
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
     ],
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "testURL": "http://localhost:3000",
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
@@ -124,9 +125,12 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "jest": "20.0.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.3"
+    "enzyme-to-json": "^3.3.3",
+    "jest": "20.0.4",
+    "jsdom": "11.10.0",
+    "jsdom-global": "3.0.2",
+    "redux-mock-store": "^1.5.1"
   }
 }
