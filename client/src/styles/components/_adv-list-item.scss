@@ -2,6 +2,9 @@
     width: 208px;
     margin: 10px;
     display: inline-block;
+    @media(max-width: 576px){
+        width: 280px;
+    }
 }
 
 .adv-list-item__image {
@@ -14,11 +17,17 @@
     font-size: 15px;
     font-weight: bold;
     margin: 0 5px;
+    @media(max-width: 576px){
+        font-size: 20px;
+    }
 }
 
 .adv-list-item__description_price {
     display: block;
     margin: 0 5px;
+    @media(max-width: 576px){
+        font-size: 18px;
+    }
 }
 
 .adv-list-item__description_date {
@@ -26,4 +35,7 @@
     color: $date-color;
     font-size: 14px;
     margin: 0 5px;
+    @media(max-width: 576px){
+        font-size: 18px;
+    }
 }

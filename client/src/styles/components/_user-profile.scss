@@ -9,11 +9,14 @@
 }
 
 .active-filter {
-    border-bottom: 2px solid yellow;
+    text-decoration: underline;
+    font-weight: bold;
 }
 .user-profile__navigation-link {
     cursor: pointer;
     display: block;
     text-decoration: none;
     color: $secondary-color;
+    font-size: 18px;
+    
 }

@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Button from '../UI/button';
 import { Animated } from "react-animated-css";
 import { openModal } from '../../actions/user';
-
 
 class Header extends Component {
 
@@ -30,13 +28,13 @@ class Header extends Component {
                     : <Link to="" className="header-login__user" onClick={this.handleOpenModal}>Вход и регистрация</Link>}
                 </Row>
                 <Row className="header">
-                    <Col xs="3" md="3" lg="4">
+                    <Col xs="6" sm="4" md="3" lg="3">
 
                     <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
                         <Link to="/" className="header__title" key="title">Ad Ninja</Link>
                     </Animated>
                     </Col>
-                    <Col>
+                    <Col xs="4" sm={{ size: 4, offset: 0}} md={{ size: 4, offset: 0}} lg={{ size: 4, offset: 1 }} xl={{ size: 4, offset: 1 }} className="header__navigation">
                         <Link to="/" className="header__link">Авто</Link>
                         <Link to="/" className="header__link">Недвижимость</Link>
                         <Link to="/" className="header__link">Работа</Link>

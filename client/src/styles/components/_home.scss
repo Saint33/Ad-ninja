@@ -1,4 +1,39 @@
-.home__load-more {
+.home__load-more button {
     display: block !important;
     margin: 15px auto !important;
+}
+
+.home-search {
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.home-search__input {
+    margin-right: 5px;
+    outline: none;
+    width: 30% ;
+    transition: 0.4s;
+    border: 1px solid #ccc;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	font-size: 15px;
+	padding: 4px 7px;
+	outline: 0;
+    -webkit-appearance: none;
+    @media(max-width: 768px){
+        width: 40%;
+    }
+    @media(max-width: 576px){
+        width: 70%;
+    }
+}
+
+.home-search__input:focus {
+    border: 1px solid $main-color;
+    width: 60%;
+}
+
+.home {
+    justify-content: space-around;
 }

@@ -30,11 +30,6 @@ export const getAd = (id) => {
     }
 }
 
-export const getAdOwner = (id) => {
-    const request = axios.get(`/api/user/${id}`)
-        .then(response => response.data)
-}
-
 export const userAds = (id) => {
     const request = axios.get(`/api/ad/user-ads?id=${id}`)
         .then(response => response.data.docs)

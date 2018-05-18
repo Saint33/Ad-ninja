@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import AdListItem from './Ad/AdListItem';
 import axios from 'axios';
-import { Input } from 'reactstrap';
 import Button from './UI/button';
 import Spinner from 'react-spinkit';
 
@@ -53,21 +52,20 @@ class Home extends Component {
 
         return (
             <div>
-                <Row className="header-search"> 
+                <Row className="home-search"> 
                     <input 
-                        className="header-search__input" 
+                        className="home-search__input" 
                         type="text" 
                         onChange={this.handleInputChange}
                         placeholder="Поиск по объявлениям"
                     />
                     <Button onClick={this.handleQuery}>Найти</Button>
                 </Row>
-                <Row>
-                    <Col xs="9">
+                <Row >
+                    <Col xs="12" sm="9" md="9" className="home">
                         {adList ? adList.map(item => <AdListItem {...item} key={item._id} />) : loader}
-                        <button className="header__button home__load-more" onClick={this.loadMore}>Загрузить ещё</button>
+                        <div className="home__load-more"><Button  onClick={this.loadMore}>Загрузить ещё</Button></div>
                     </Col>
-
                 </Row>
             </div>
         )

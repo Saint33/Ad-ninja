@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { InputGroup, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import Button from '../UI/button';
-import { register, login } from '../../actions/user';
+import { register } from '../../actions/user';
 import { withRouter } from 'react-router-dom';
 
 export class Register extends Component {

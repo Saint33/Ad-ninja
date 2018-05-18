@@ -4,7 +4,7 @@ import Login from '../auth/login';
 import Register from '../auth/register';
 import { connect } from 'react-redux';
 import { openModal, closeModal } from '../../actions/user';
-import { Motion, spring, TransitionMotion } from 'react-motion';
+import { Motion, spring } from 'react-motion';
 
 const customStyles = {
     content : {

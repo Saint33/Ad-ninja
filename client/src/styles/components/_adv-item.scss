@@ -3,14 +3,10 @@
     margin: 20px;
     padding: 10px;
     min-width: 800px;
-}
-
-.adv-item__header {
-
-}
-
-.adv-item__description {
-
+    @media(max-width: 578px){
+        flex-flow:column wrap; 
+        
+    }
 }
 
 .adv-item__title {
@@ -28,23 +24,40 @@
     margin-bottom: 50px;
     text-align: center;
     font-weight: 400;
+    @media(max-width: 578px){
+        margin-bottom: 10px;
+    }
 }
 
 .adv-item__image {
     width: 100%;
+    @media(max-width: 578px){
+        width: 90%;
+    }
 }
 
 .adv-item__sideinfo {
     border-left: 1px solid #ccc;
+    @media(max-width: 578px){
+        border: none;
+        
+    }
 }
+
 
 .adv-item__sellers-info_phone {
     padding: 8px;
     background: $main-color;
     border: 1px solid $secondary-color;
-
     border-radius: 5px;
     margin-bottom: 20px;
+    width: 190px;
+    @media(max-width: 578px){
+        width: 210px;
+    }
+    @media(min-width: 1200px){
+        width: 250px;
+    }
 }
 
 .sellers-phone {
@@ -54,6 +67,9 @@
     }
     @media(max-width: 991px){
         font-size: 15px;
+    }
+    @media(max-width: 578px){
+        font-size: 20px;
     }
 }
 
@@ -87,7 +103,7 @@
 }
 
 .adv-item__sellers-info_adress-value {
-
+    
 }
 
 .adv-item__info-address_title {
@@ -114,4 +130,13 @@
 .adv-item__similar-ads {
     
 
+}
+
+.adv-item__info-address_value {
+    margin-right: 10px;
+}
+
+.adv-item__similar-ads__failed {
+    word-wrap: break-word;
+    width: 260px;
 }

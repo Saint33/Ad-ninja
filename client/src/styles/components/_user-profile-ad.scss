@@ -15,8 +15,7 @@
 .user-profile-ad__image {
     width: 100%; 
     height: auto;
-    border-radius: 50%; 
-    border: 2px solid $secondary-color;
+    border-radius: 7px;
 }
 
 .user-profile-ad__price {
@@ -38,24 +37,4 @@
 
 .user-profile-ad__content-wrapper {
     display: inline-block;
-}
-
-.user-profile-ad__button {
-    margin-top: 10px;
-    background-color: black;
-    color: white;
-    border-color: black;
-    border-radius: 5px;
-    padding: 5px 5px 30px 5px;
-    cursor: pointer;
-    transition-duration: 0.2s;
-    height: 30px;
-    margin-right: 20px;
-}
-
-.user-profile-ad__button:hover {
-    background-color: $main-color;
-    border-color: #4A4A4A;
-    text-decoration: none;
-    color:$secondary-color;
 }

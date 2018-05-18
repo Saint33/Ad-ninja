@@ -8,9 +8,10 @@ import Loader from '../UI/spinner';
 
 class UserPublicProfile extends Component {
     state = { 
-        loading: true,
         active: true,
-        inactive: false
+        inactive: false,
+        userFetched: false,
+        userAdsFetched: false
     }
     handleActiveFilter = () => {
         this.setState({active: true, inactive: false})
@@ -21,26 +22,31 @@ class UserPublicProfile extends Component {
 
     componentWillMount() {
         this.props.dispatch(getUserWithAds(this.props.match.params.id));
-        // this.props.dispatch(userAds(this.props.match.params.id));
-        this.setState({loading: false})
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
+    componentWillReceiveProps(newProps){
+        console.log(newProps)
+        if(newProps.user.currentUser._id === this.props.match.params.id){
+            this.setState({...this.state, userFetched: true })
+        }
+        if(newProps.ad.currentUserAds){
+            this.setState({...this.state, userAdsFetched: true })
+        }
     }
 
     render() {
+
         let user = this.props.user.currentUser;
         let userAds = this.props.ad.currentUserAds;
 
         return (
             <div>
-                { !userAds ? <Loader />: 
+                { !( this.state.userAdsFetched && this.state.userAdsFetched )? <Loader />: 
                             <Row>
                             <Col md="9">
                              <div className="public-profile">
                                  <h3 className="public-profile__name">{user.firstname}</h3>
-                                 {/* <span className="public-profile__ads">{this.state.userAdsActive.length} активных объявлений</span> */}
+                                 <span className="public-profile__ads">{userAds.activeAds.length} активных объявлений</span>
                                  <span className="public-profile__since">На Add-Ninja с {memberSince(user.createdAd)}</span>
                                  <span className="public-profile__address">{user.address}</span>
                              </div>

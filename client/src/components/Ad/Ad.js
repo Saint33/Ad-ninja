@@ -6,11 +6,11 @@ import FaPhone from 'react-icons/lib/fa/phone';
 import { formatDate, memberSince } from '../../utility';
 import { connect } from 'react-redux';
 import { getAd } from '../../actions/ad';
-import { Animated } from "react-animated-css";
 import Map from '../Map';
 import axios from 'axios';
 import { Motion, spring } from 'react-motion';
 import AdListItem from './AdListItem';
+import Button from '../UI/button';
 
 class Ad extends Component {
 
@@ -29,9 +29,9 @@ class Ad extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.ad.currentAd.address){
-            this.getAdLocation(nextProps.ad.currentAd.address)
-        }
+        // if(nextProps.ad.currentAd.address){
+        //     this.getAdLocation(nextProps.ad.currentAd.address)
+        // }
         if(nextProps.ad.currentAd.title){
             this.getSimilarAds(nextProps.ad.currentAd.title)
         }
@@ -46,7 +46,6 @@ class Ad extends Component {
     getAdLocation(address){
         let encodedAddress = encodeURIComponent(address);
         let geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
-        const API_KEY = 'AIzaSyCRutUyMhVs4Af7j54h-Iqpg3dWfPHkhew';
         axios.get(geocodeUrl)
             .then(response => {
                 this.setState({
@@ -75,19 +74,25 @@ class Ad extends Component {
         } else {
             ad = false;
         }
-        // let ad = this.props.ad.currentAd;
         
         let showAdLocation = this.state.adLocation.show;
         return (
             <div>
                 { !ad ? <Loader /> : 
+                <div>
             <Row className="adv-item">
-            <Col xs={{ size: 7, offset: 1 }}>
+            <Col 
+                xs={{ size: 6 }} 
+                sm={{ size: 5, offset: 0}} 
+                md={{ size: 6, offset: 1 }} 
+                lg={{ size: 7, offset: 1 }}
+            >
                 <div>
                     <h3 className="adv-item__title">{ad.title}</h3>
                     <span className="adv-item__number">Размещено {formatDate(ad.createdAt)}</span>
                 </div>
                 <img 
+                    alt={`${ad.title}`}
                     src={`/api/file/${ad.image}`}
                     className="adv-item__image"
                     />
@@ -95,7 +100,7 @@ class Ad extends Component {
                     <div className="adv-item__info-address">
                         <span className="adv-item__info-address_title">Адрес:</span>
                         <span className="adv-item__info-address_value">{ad.address}</span>
-                        <button onClick={this.showMap}>Показать карту</button>
+                        <Button onClick={this.showMap}>Показать карту</Button>
                     <Motion
                         defaultStyle={{opacity: 0, height: 0}} 
                         style={{opacity:spring(1), 
@@ -123,15 +128,13 @@ class Ad extends Component {
                         {ad.description}
                     </p>
                 </div>
-                <div className="adv-item__similar-ads">
-                <h4>Похожие объявления</h4>
-                { this.state.similarAds.length > 0 ? 
-                    this.state.similarAds.slice(0, 6).map(ad => <AdListItem {...ad} key={ad._id}/> ) 
-                    : <h4>Похожих объявлений нет:(</h4>
-                }
-                </div>
-            </Col>      
-                <Col className="adv-item__sideinfo" xs={{ size: 3 }}>
+            </Col>   
+
+                <Col 
+                    className="adv-item__sideinfo" 
+                    xs={{ size: 3, offset: 1 }} 
+                    sm={{ size: 3, offset: 0 }} 
+                    md="3">
                     <span className="adv-item__price">{ad.price} ₽</span>
                     <div className="adv-item__sellers-info">
                         <div className="adv-item__sellers-info_phone">
@@ -147,9 +150,31 @@ class Ad extends Component {
                         </div>
                     </div>
                 </Col>
-
             </Row>
+            <Row>
+                <Col 
+                    className="similar-ads" 
+                    xs={{size: 4, offset: 1}} 
+                    md={{ size: 9, offset: 0}} 
+                    lg={{ size: 8, offset: 1}}
+                    >
+                    
+                    { 
+                        this.state.similarAds.length > 0 ? 
+                        <div className="adv-item__similar-ads">
+                        <h4>Похожие объявления</h4>
+                        {
+                        this.state.similarAds.slice(0, 6).map(ad => 
+                        <AdListItem {...ad} key={ad._id}/> ) }
+                        </div>
+                        : <h5 className="adv-item__similar-ads__failed">Похожих объявлений нет:(</h5>
+                    }
+             
+                </Col>
+            </Row>
+            </div>
             }
+            
             </div>
         );
     }

@@ -3,12 +3,10 @@ import { Switch, Route } from 'react-router';
 
 import Layout from './hoc/layout';
 import Auth from './hoc/auth';
-
 import Home from './components/Home';
 import Ad from './components/Ad/Ad';
 import AddAd from './components/Ad/AddAd';
 import UserProfile from './components/User/UserProfile';
-import login from './components/auth/login';
 import UserPublicProfile from './components/User/UserPublicProfile';
 import Register from './components/auth/register';
 import LoginRegisterModal from './components/auth/modal';

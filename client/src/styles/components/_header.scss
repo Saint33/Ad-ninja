@@ -10,6 +10,10 @@
     font-weight: bold;
     font-family: 'Trade Winds', cursive;
     color: $secondary-color;
+    margin-left:20px;
+    @media(max-width: 768px){
+        
+    }
 }
 
 .header__title:hover {
@@ -50,29 +54,8 @@
     text-decoration: none;
 }
 
-.header-search {
-    justify-content: center;
-    margin-top: 5px;
-    
-}
-
-.header-search__input {
-    margin-right: 5px;
-    outline: none;
-    width: 30% ;
-    transition: 0.4s;
-    border: 1px solid #ccc;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-
-	font-size: 15px;
-	padding: 4px 7px;
-	outline: 0;
-	-webkit-appearance: none;
-}
-
-.header-search__input:focus {
-    border: 1px solid $main-color;
-    width: 50%;
+.header__navigation {
+    @media(max-width: 768px){
+        display: none;
+    }
 }
