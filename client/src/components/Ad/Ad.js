@@ -24,7 +24,7 @@ class Ad extends Component {
         similarAds: []
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.props.dispatch(getAd(this.props.match.params.id))
     }
 

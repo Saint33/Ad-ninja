@@ -18,7 +18,7 @@ class UserProfile extends Component {
         showInactive: false
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // this.props.dispatch(getUser(this.props.user.login.id))
         // axios.get(`/api/user/${this.props.user.login.id}`)
         //     .then(response => this.setState({user: response.data}))

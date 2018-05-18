@@ -20,7 +20,7 @@ class UserPublicProfile extends Component {
         this.setState({active: false, inactive: true})
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.dispatch(getUserWithAds(this.props.match.params.id));
     }
 

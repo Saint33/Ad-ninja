@@ -14,7 +14,7 @@ class Home extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         axios.get('/api/ad/ads?skip=0&order=desc&limit=18')
             .then(response => {
                 this.setState({ads: response.data})
