@@ -29,9 +29,9 @@ class Ad extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        // if(nextProps.ad.currentAd.address){
-        //     this.getAdLocation(nextProps.ad.currentAd.address)
-        // }
+        if(nextProps.ad.currentAd.address){
+            this.getAdLocation(nextProps.ad.currentAd.address)
+        }
         if(nextProps.ad.currentAd.title){
             this.getSimilarAds(nextProps.ad.currentAd.title)
         }
