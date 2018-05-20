@@ -48,6 +48,7 @@ class Ad extends Component {
         let geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
         axios.get(geocodeUrl)
             .then(response => {
+                console.log(response)
                 this.setState({
                     adLocation: {
                         adLocationFetched: true,
@@ -82,7 +83,7 @@ class Ad extends Component {
                 <div>
             <Row className="adv-item">
             <Col 
-                xs={{ size: 6 }} 
+                xs={{ size: 12 }} 
                 sm={{ size: 5, offset: 0}} 
                 md={{ size: 6, offset: 1 }} 
                 lg={{ size: 7, offset: 1 }}
@@ -132,7 +133,7 @@ class Ad extends Component {
 
                 <Col 
                     className="adv-item__sideinfo" 
-                    xs={{ size: 3, offset: 1 }} 
+                    xs={{ size: 8, offset: 1 }} 
                     sm={{ size: 3, offset: 0 }} 
                     md="3">
                     <span className="adv-item__price">{ad.price} ₽</span>
@@ -141,12 +142,12 @@ class Ad extends Component {
                             <FaPhone size={24} className="phone-icon"/>
                             <span className="sellers-phone">{ad.owner.phone}</span>
                         </div>
-                            <span>Продавец</span>
+                            <span className="adv-item__sellers-info_value">Продавец:</span>
                             <Link to={`/user/${ad.owner._id}`} className="adv-item__sellers-info_name">{ad.owner.firstname}</Link>
                             <span className="adv-item__sellers-info_reg">На Add-ninja c {memberSince(ad.owner.createdAt)}</span>
                         <div className="adv-item__sellers-info_adress">
                             <span className="adv-item__sellers-info_adress-title">Адрес:</span>
-                            <span className="adv-item__sellers-info_adress-value">{ad.owner.address}</span>
+                            <span className="adv-item__sellers-info_value">{ad.owner.address}</span>
                         </div>
                     </div>
                 </Col>

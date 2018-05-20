@@ -41,7 +41,7 @@ class Header extends Component {
                         <Link to="/" className="header__link">Услуги</Link>
                     </Col>
                     <Col >
-                        <div className="header__button-wrapper"><Link to="/additem" className="button">Подать объявление</Link></div>
+                        <div className="header__button-wrapper"><Link to="/additem" className="header_button button ">Подать объявление</Link></div>
                     </Col>
                 </Row>
             </div>
