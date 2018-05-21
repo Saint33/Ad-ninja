@@ -5,29 +5,34 @@ import { connect } from 'react-redux'
 import { login } from '../../actions/user'
 import { withRouter } from 'react-router-dom'
 import ErrorMessage from './errorMessage'
-import { branch, renderComponent, lifecycle, compose, withHandlers, withState } from 'recompose'
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
-}
+import { compose, withHandlers, withState } from 'recompose'
 
 const enhance = compose(
     withState( 'loginForm', 'handleChange', {email: '', password:'', error: ''} ),
     withHandlers({
-        handleEmailChange: props => event => props.handleChange({...props.loginForm, email: event.target.value}),
-        handlePasswordChange: props => event => props.handleChange({...props.loginForm, password: event.target.value}),
+        handleEmailChange: props => event => {
+            props.handleChange({...props.loginForm, email: event.target.value})
+        },
+        handlePasswordChange: props => event => {
+            props.handleChange({...props.loginForm, password: event.target.value})
+        },
         submitLogin: props => event => {
-            console.log(props)
             event.preventDefault();
-            const loginData = { email: props.loginForm.email, password: props.loginForm.password }
+            const loginData = { 
+                email: props.loginForm.email, 
+                password: props.loginForm.password 
+            }
             props.dispatch(login(loginData));
         }
     })
 )
 
-const Login = enhance(({ loginForm, handleChange, handleEmailChange, handlePasswordChange, submitLogin }) => 
+const Login = enhance(({ 
+    loginForm, 
+    handleEmailChange, 
+    handlePasswordChange, 
+    submitLogin 
+}) => 
     <form className="login" onSubmit={submitLogin}>
         <InputGroup>
             <Input 
@@ -58,5 +63,11 @@ const Login = enhance(({ loginForm, handleChange, handleEmailChange, handlePassw
         <ErrorMessage />
     </form>
 )
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
 
 export default connect(mapStateToProps)(withRouter(Login));

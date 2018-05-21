@@ -8,9 +8,8 @@
     margin: 10px 20px;
 }
 
-.login__title {
-    text-align: center;
-    margin: 10px 0 20px 0;
+.login__input:focus {
+    border: 2px solid $main-color;
 }
 
 .button_wrapper {

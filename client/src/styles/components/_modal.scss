@@ -1,18 +1,18 @@
-.modal-title{
+.modal__title-group{
     cursor: pointer;
     font-size: 22px;
+    margin-top: 0;
+    text-align: center;
+    margin: 0 0 20px 0;
 }
 
+.modal__title-item:hover {
+    color: $main-color;
+}
 
 .modal-suricane {
     width: 35px;
     height: auto;
     position: relative;
     left: 78px;
-    top: 18px;
 }
-// .modal-title-active {
-    
-//     text-decoration: underline overline;
-//     text-decoration-color: $main-color;
-// }
