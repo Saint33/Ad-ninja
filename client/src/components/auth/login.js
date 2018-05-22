@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 import { login } from '../../actions/user'
 import { withRouter } from 'react-router-dom'
 import ErrorMessage from './errorMessage'
-import { compose, withHandlers, withState } from 'recompose'
-
+import { compose, withHandlers, withState, lifecycle } from 'recompose'
+import { closeModal } from '../../actions/user';
+ 
 const enhance = compose(
     withState( 'loginForm', 'handleChange', {email: '', password:'', error: ''} ),
     withHandlers({
@@ -24,6 +25,14 @@ const enhance = compose(
             }
             props.dispatch(login(loginData));
         }
+    }),
+    lifecycle({
+        componentWillReceiveProps(nextProps){
+            if(nextProps.user.login.isAuth){
+                nextProps.closeModal();
+                nextProps.history.push('/');
+            }
+        } 
     })
 )
 

@@ -37,3 +37,29 @@
 .home {
     justify-content: space-around;
 }
+
+.home__vip {
+    margin-top: 20px;
+    @media(max-width: 768px){
+        display: none;
+    }
+}
+
+.home__vip-title {
+    font-size: 20px;
+    padding: 5px;
+    display: block;
+    background: black;
+    color: $main-color;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    margin: 0;
+}
+
+.home__vip-wrapper {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed;
+}

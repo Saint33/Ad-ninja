@@ -29,7 +29,8 @@ const AdSchema = mongoose.Schema({
     active: {
         type: Boolean,
         default: true
-    }
+    },
+    VIP: false
 }, {timestamps: true});
 
 const Ad = mongoose.model('Ad', AdSchema);

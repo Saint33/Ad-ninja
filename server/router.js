@@ -48,10 +48,12 @@ module.exports = function(app){
     adRoutes.post('/', AdController.newAd);
     adRoutes.get('/', AdController.getAd);
     adRoutes.get('/ads', AdController.getAds);
+    adRoutes.get('/vip', AdController.getVIPAds);
     adRoutes.delete('/', AdController.deleteAd);
     adRoutes.get('/user-ads', AdController.getUserAds);
     adRoutes.get('/find', AdController.findAd);
-
+    adRoutes.post('/add-to-favorites', AdController.addToFavorites)
+    adRoutes.post('/delete-from-favorites', AdController.deleteFromFavorites)
     app.use('/api', apiRoutes);
 
 }

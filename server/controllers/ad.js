@@ -1,4 +1,5 @@
 const { Ad } = require('../models/ad');
+const { User } = require('../models/user');
 
 exports.newAd = (req, res, next) => {
     const ad = new Ad(req.body);
@@ -42,6 +43,15 @@ exports.getAds = (req, res, next) => {
     });
 }
 
+exports.getVIPAds = (req, res, next) => {
+    Ad.find({VIP: true}, (err, docs) => {
+        if(err) return next(err);
+        res.json({
+            docs
+        })
+    })
+}
+
 exports.deleteAd = (req, res, next) => {
     let id = req.query.id;
     Ad.findByIdAndRemove(id, (err,doc) => {
@@ -68,3 +78,23 @@ exports.findAd = (req, res, next) => {
         res.send(doc);
     });
 };
+
+
+exports.addToFavorites = (req, res, next) => {
+    User.findByIdAndUpdate(req.body.userId, {$addToSet: {favorites: req.body.adId}}, (err, doc) => {
+        if(err) return next(err);
+        res.status(200).json({
+            doc
+        })
+    })
+}
+
+exports.deleteFromFavorites = (req, res, next) => {
+    User.findByIdAndUpdate(req.body.userId, {$pull: {favorites: req.body.adId}}, (err, doc) => {
+        if(err) return next(err);
+        res.status(200).json({
+            success: true,
+            id: req.body.adId
+        })
+    })
+}

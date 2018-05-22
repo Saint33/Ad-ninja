@@ -19,7 +19,8 @@ exports.auth = (req, res, next) => {
         email: req.user.email,
         username: req.user.username,
         phone: req.user.phone,
-        firstname: req.user.firstname
+        firstname: req.user.firstname,
+        favorites: req.user.favorites
     })
 };
 

@@ -33,8 +33,8 @@ const enhance = compose(
     lifecycle({
         componentWillReceiveProps(nextProps){
             if(nextProps.user.login.isAuth){
-                this.props.closeModal();
-                this.props.history.push('/');
+                nextProps.closeModal();
+                nextProps.history.push('/');
             }
         } 
     })

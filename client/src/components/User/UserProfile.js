@@ -71,7 +71,12 @@ class UserProfile extends Component {
                     <div>
                         <Switch>
                             <Route path="/user/profile/messages" component={UserMessages} />
-                            <Route path="/user/profile/favorites" component={UserFavorites}/>
+                            <Route path="/user/profile/favorites"  render={() => 
+                                <UserFavorites 
+                                    favoriteAds={this.props.favoriteAds}
+                                    userId={this.props.userId}
+                                />
+                            }/>
                             <Route path="/user/profile/ads" render={() => 
                                 <UserAds 
                                     ads={this.props.ad.currentUserAds}
@@ -82,8 +87,6 @@ class UserProfile extends Component {
                                 />} 
                             />
                         </Switch>
-                            {/* {this.state.active ?  activeAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null}
-                            {this.state.inactive ?  inactiveAds.map(ad => <UserProfileAd key={ad._id} {...ad} />) : null} */}
                     </div>
                 </Col>
             </Row>
@@ -93,7 +96,9 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ad: state.ad
+        ad: state.ad,
+        favoriteAds: state.user.login.favorites,
+        userId: state.user.login.id
     }
 }
 

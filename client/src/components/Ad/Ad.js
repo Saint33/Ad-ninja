@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import Loader from '../UI/spinner';
-import FaPhone from 'react-icons/lib/fa/phone';
-import { formatDate, memberSince } from '../../utility';
-import { connect } from 'react-redux';
-import { getAd } from '../../actions/ad';
-import Map from '../Map';
-import axios from 'axios';
-import { Motion, spring } from 'react-motion';
-import AdListItem from './AdListItem';
-import Button from '../UI/button';
+import React, { Component } from 'react'
+import { Row, Col } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import Loader from '../UI/spinner'
+import FaPhone from 'react-icons/lib/fa/phone'
+import { formatDate, memberSince } from '../../utility'
+import { connect } from 'react-redux'
+import { getAd } from '../../actions/ad'
+import Map from '../Map'
+import axios from 'axios'
+import { Motion, spring } from 'react-motion'
+import AdListItem from './AdListItem'
+import Button from '../UI/button'
 
 class Ad extends Component {
-
     state = {
         adLocation:{
             adLocationFetched: false,
@@ -90,7 +89,9 @@ class Ad extends Component {
             >
                 <div>
                     <h3 className="adv-item__title">{ad.title}</h3>
-                    <span className="adv-item__number">Размещено {formatDate(ad.createdAt)}</span>
+                    <span className="adv-item__number">
+                        Размещено {formatDate(ad.createdAt)}
+                    </span>
                 </div>
                 <img 
                     alt={`${ad.title}`}
@@ -99,13 +100,16 @@ class Ad extends Component {
                     />
                 <div className="adv-item__info">
                     <div className="adv-item__info-address">
-                        <span className="adv-item__info-address_title">Адрес:</span>
-                        <span className="adv-item__info-address_value">{ad.address}</span>
+                        <span className="adv-item__info-address_title">
+                        Адрес:</span>
+                        <span className="adv-item__info-address_value">
+                        {ad.address}</span>
                         <Button onClick={this.showMap}>Показать карту</Button>
                     <Motion
                         defaultStyle={{opacity: 0, height: 0}} 
                         style={{opacity:spring(1), 
-                                height: showAdLocation ? spring(400, {stiffness: 110, damping: 50}) : spring(0, {stiffness: 210, damping: 50})
+                                height: showAdLocation ? spring(400, {stiffness: 110, damping: 50}) 
+                                : spring(0, {stiffness: 210, damping: 50})
                             }}
                     >
                     {style =>
@@ -143,8 +147,9 @@ class Ad extends Component {
                             <span className="sellers-phone">{ad.owner.phone}</span>
                         </div>
                             <span className="adv-item__sellers-info_value">Продавец:</span>
-                            <Link to={`/user/${ad.owner._id}`} className="adv-item__sellers-info_name">{ad.owner.firstname}</Link>
-                            <span className="adv-item__sellers-info_reg">На Add-ninja c {memberSince(ad.owner.createdAt)}</span>
+                            <Link to={`/user/${ad.owner._id}`} className="adv-item__sellers-info_name">{ad.owner.username}</Link>
+                            <span className="adv-item__sellers-info_reg">
+                            На Add-ninja c {memberSince(ad.owner.createdAt)}</span>
                         <div className="adv-item__sellers-info_adress">
                             <span className="adv-item__sellers-info_adress-title">Адрес:</span>
                             <span className="adv-item__sellers-info_value">{ad.owner.address}</span>
@@ -168,7 +173,8 @@ class Ad extends Component {
                         this.state.similarAds.slice(0, 6).map(ad => 
                         <AdListItem {...ad} key={ad._id}/> ) }
                         </div>
-                        : <h5 className="adv-item__similar-ads__failed">Похожих объявлений нет:(</h5>
+                        : <h5 className="adv-item__similar-ads__failed">
+                        Похожих объявлений нет:(</h5>
                     }
              
                 </Col>

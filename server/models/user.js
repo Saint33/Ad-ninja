@@ -59,7 +59,8 @@ const userSchema = mongoose.Schema({
     },
     address: {
         type: String
-    }
+    },
+    favorites: []
 }, {timestamps: true});
 
 userSchema.pre('save', function(next) {

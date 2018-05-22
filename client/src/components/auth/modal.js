@@ -7,6 +7,9 @@ import { openModal, closeModal } from '../../actions/user'
 import { Motion, spring } from 'react-motion'
 import { compose, withHandlers, withState, withProps } from 'recompose'
 
+Modal.setAppElement('#root');
+Modal.defaultStyles.overlay.zIndex = 3;
+
 const customStyles = {
     content : {
       top                   : '50%',
@@ -15,7 +18,9 @@ const customStyles = {
       bottom                : 'auto',
       marginRight           : '-50%',
       transform             : 'translate(-50%, -50%)',
-      borderRadius         : '10px'
+      borderRadius         : '10px',
+      position: 'absolute',
+      zIndex: '99'
     }
 };
 

@@ -8,11 +8,13 @@ import { openModal } from '../../actions/user';
 class Header extends Component {
 
     handleLogin = () => {
-        this.setState((prevState) => ({...prevState, login: true, register: false}))
+        this.setState((prevState) => (
+            {...prevState, login: true, register: false}))
     }
 
     handleRegistration = () => {
-        this.setState((prevState) => ({...prevState, login: false, register: true}))
+        this.setState((prevState) => (
+            {...prevState, login: false, register: true}))
     }
 
     handleOpenModal = () => {
@@ -24,24 +26,52 @@ class Header extends Component {
         return (
             <div>
                 <Row className="header-login">
-                { user.isAuth ? <Link to="/user/profile" className="header-login__user">{user.username}</Link>
-                    : <Link to="" className="header-login__user" onClick={this.handleOpenModal}>Вход и регистрация</Link>}
+                { user.isAuth ? 
+                    <Link 
+                    to="/user/profile" 
+                    className="header-login__user">
+                {user.username}</Link>
+                    : <Link 
+                        to="" 
+                        className="header-login__user" 
+                        onClick={this.handleOpenModal}
+                    >Вход и регистрация</Link>}
                 </Row>
                 <Row className="header">
                     <Col xs="6" sm="4" md="3" lg="3">
 
-                    <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
-                        <Link to="/" className="header__title" key="title">Ad Ninja</Link>
+                    <Animated 
+                        animationIn="bounceInLeft" 
+                        animationOut="fadeOut" 
+                        isVisible={true}>
+                        <Link 
+                            to="/" 
+                            className="header__title" 
+                            key="title"
+                        >Ad Ninja</Link>
                     </Animated>
                     </Col>
-                    <Col xs="4" sm={{ size: 4, offset: 0}} md={{ size: 4, offset: 0}} lg={{ size: 4, offset: 1 }} xl={{ size: 4, offset: 1 }} className="header__navigation">
+                    <Col 
+                        xs="4" 
+                        sm={{ size: 4, offset: 0}} 
+                        md={{ size: 4, offset: 0}} 
+                        lg={{ size: 4, offset: 1 }} 
+                        xl={{ size: 4, offset: 1 }} 
+                        className="header__navigation"
+                        >
                         <Link to="/" className="header__link">Авто</Link>
                         <Link to="/" className="header__link">Недвижимость</Link>
                         <Link to="/" className="header__link">Работа</Link>
                         <Link to="/" className="header__link">Услуги</Link>
                     </Col>
                     <Col >
-                        <div className="header__button-wrapper"><Link to="/additem" className="header_button button ">Подать объявление</Link></div>
+                        <div className="header__button-wrapper">
+                        <Link 
+                            to="/additem" 
+                            className="header_button button "
+                        >
+                        Подать объявление</Link>
+                        </div>
                     </Col>
                 </Row>
             </div>

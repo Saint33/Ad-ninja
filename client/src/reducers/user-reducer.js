@@ -43,6 +43,14 @@ export default (state = initialState, action) => {
                 ...state,
                 loginModalIsOpen: false
             }
+        case 'DELETE_AD_FROM_FAVORITES_FULFILLED':
+            return {
+                ...state,
+                login: {
+                    ...state.login,
+                    favorites: state.login.favorites.filter(ad => ad !== action.payload.id)
+                }
+            }
         default: 
             return state;
     }

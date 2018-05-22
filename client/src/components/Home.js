@@ -10,6 +10,7 @@ class Home extends Component {
         super(props);
         this.state = {
             ads : [],
+            vipAds: [],
             query: ''
         }
     }
@@ -18,6 +19,10 @@ class Home extends Component {
         axios.get('/api/ad/ads?skip=0&order=desc&limit=18')
             .then(response => {
                 this.setState({ads: response.data})
+            })
+        axios.get('/api/ad/vip')
+            .then(response => {
+                this.setState({vipAds: response.data.docs.slice(0,4)})
             })
     }
 
@@ -48,7 +53,12 @@ class Home extends Component {
 
     render(){
         let adList = this.state.ads;
-        let loader = <Spinner className="loader-position" name='folding-cube' fadeIn="none"/>;
+        let vipAds = this.state.vipAds;
+        let loader = <Spinner 
+                className="loader-position" 
+                name='folding-cube' 
+                fadeIn="none"
+            />;
 
         return (
             <div>
@@ -62,9 +72,45 @@ class Home extends Component {
                     <Button onClick={this.handleQuery}>Найти</Button>
                 </Row>
                 <Row >
-                    <Col xs="12" sm="9" md="9" className="home">
-                        {adList ? adList.map(item => <AdListItem {...item} key={item._id} />) : loader}
-                        <div className="home__load-more"><Button  onClick={this.loadMore}>Загрузить ещё</Button></div>
+                    <Col xs="12" sm="12" md="8" lg="8" className="home">
+                        {adList ? adList.map(item => {
+                            if(item.VIP){
+                                return (
+                                <AdListItem 
+                                    {...item} 
+                                    userId={this.props.user.id} 
+                                    key={item._id} 
+                                    className="adv-list-item__vip"
+                                    />) 
+                            } else {
+                                return (
+                                <AdListItem 
+                                    {...item} 
+                                    userId={this.props.user.id} 
+                                    key={item._id} />) 
+                            }
+                        })
+
+                        : loader}
+                        <div className="home__load-more">
+                        <Button  
+                            onClick={this.loadMore}
+                        >Загрузить ещё</Button></div>
+                    </Col>
+                    <Col md="4">
+                        <div className="home__vip">
+                        <h4 className="home__vip-title">
+                        
+                           VIP-объявления
+                        </h4>
+                        <div  className="home__vip-wrapper">
+                        {vipAds.map(item => <AdListItem 
+                            {...item}
+                            userId={this.props.user.id}
+                            key={item._id}
+                        />)}
+                        </div>
+                        </div>
                     </Col>
                 </Row>
             </div>
