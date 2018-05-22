@@ -53,7 +53,7 @@ export const userAds = id => {
 
 export const addToFavorites = data => {
     const request = axios.post('/api/ad/add-to-favorites', data)
-        .then(response => console.log(response))
+        .then(response => console.log(response, data))
 
     return {
         type: 'ADD_TO_FAVORITES',

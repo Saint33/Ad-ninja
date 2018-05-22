@@ -81,7 +81,7 @@ exports.findAd = (req, res, next) => {
 
 
 exports.addToFavorites = (req, res, next) => {
-    User.findByIdAndUpdate(req.body.userId, {$addToSet: {favorites: req.body.adId}}, (err, doc) => {
+    User.findByIdAndUpdate(req.body.id, {$addToSet: {favorites: req.body.adId}}, (err, doc) => {
         if(err) return next(err);
         res.status(200).json({
             doc
